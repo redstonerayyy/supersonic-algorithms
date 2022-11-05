@@ -3,6 +3,7 @@
 #include <chrono>
 #include <iostream>
 #include <algorithm>
+#include <vector>
 
 std::vector<unsigned int> gen(unsigned int length){
     std::random_device dev; // get random seed

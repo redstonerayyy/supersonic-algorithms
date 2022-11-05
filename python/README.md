@@ -8,10 +8,12 @@ Der großteil der Laufzeit des Programs verfällt sogar auf die Generierung der 
 Insgesamt braucht der Code ca 16s, davon 9.4 Generierung und 5.6 Sortierung bei einem Verbraucht von ca. 511MB RAM.
 Wie zu erwarten ist die Implementation der sort() Funktion in Python schon sehr gut. 
 
-# sortv2.x.py
+# sortv2.0.py
 Eine eigene Implementation von Quicksort in Python schreiben. 
 Erster Versuch, Generation time wie zu erwarten gleich, Sortierzeit
 allerdings 44.6 Sekunden, also deutlich langsamer.
+
+# sortv2.1.py
 Nun wird der Code mit numba und numpy verbessert mit numba und numpy.
 Ein numpy aray zu verwenden und numpy.random.randint zur generierung der
 zufälligen Liste verringert die Generierungszeit auf 0.05 Sekunden
