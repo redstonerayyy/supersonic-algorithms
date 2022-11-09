@@ -12,9 +12,9 @@ std::vector<unsigned int> gen(unsigned int length){
     std::mt19937 rng(dev()); // can set seed here
     std::uniform_int_distribution<std::mt19937::result_type> dist(0, 4294967295); // range
 
-    std::vector<unsigned int> numbers;
+    std::vector<unsigned int> numbers(length, 0);
     for(int i = 0; i < length; ++i){
-        numbers.push_back(dist(rng));
+        numbers.at(i) = (dist(rng));
     }
 
     return numbers;
@@ -100,9 +100,12 @@ void RadixSort(std::vector<unsigned int> &_vector) {
         }
 
         // copy to original array
-        for (unsigned long i = 0; i < _vector.size(); ++i) {
-            _vector[i] = result[i];
-        }
+        // for (unsigned long i = 0; i < _vector.size(); ++i) {
+        //     _vector[i] = result[i];
+        // }
+        // swap vectors
+        
+        
 
         // increase digit place and check for arithmetic overflow
         unsigned long multiple = long(digitplace) * 10;
@@ -139,4 +142,16 @@ int main(){
     // output
     std::cout << "Generation Time: " << gendiff.count() << " Nanoseconds or " << gendiffmiliseconds.count() << " Miliseconds or " << gendiffseconds.count() << " Seconds." << std::endl;
     std::cout << "Sorting Time: " << sortdiff.count() << " Nanoseconds or " << sortdiffmiliseconds.count() << " Miliseconds or " << sortdiffseconds.count() << " Seconds." << std::endl;
+}
+
+std::vector<int> nums = {1,2,3,4};
+std::vector<int> dums(4,0);
+while(true){
+    // fill in reverse
+    for(int i = nums.size() - 1; i > -1; --i){
+        dums.at(3 - i) = nums.at(i); 
+    }
+    for(int i = 0; i < nums.size(); ++i){
+        nums.at(i) = dums.at(i);
+    }
 }
