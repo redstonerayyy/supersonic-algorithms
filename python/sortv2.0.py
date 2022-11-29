@@ -1,6 +1,7 @@
 import random
 #random.seed(10) # set seed if desired
 import time
+
 def gen(length):
     return [random.randint(0, 4294967295) for i in range(length)]
 

@@ -1,9 +1,6 @@
-import random
-#random.seed(10) # set seed if desired
 import time
 import numpy as np
 from numba import jit
-import cProfile
 
 # @jit(nopython=True) # makes generation slower but sorting faster?
 def gen(length):
