@@ -5,12 +5,15 @@
 #include <algorithm>
 #include <vector>
 #include <limits>
+#include <span>
+#include <cstring>
+#include <string>
 
 // generate
-std::vector<unsigned int> gen(unsigned int length){
+std::vector<unsigned int> gen(unsigned int length, unsigned int max){
     std::random_device dev; // get random seed
     std::mt19937 rng(dev()); // can set seed here
-    std::uniform_int_distribution<std::mt19937::result_type> dist(0, 4294967295); // range
+    std::uniform_int_distribution<std::mt19937::result_type> dist(0, max); // range
 
     std::vector<unsigned int> numbers(length, 0);
     for(int i = 0; i < length; ++i){
@@ -103,9 +106,24 @@ void RadixSort(std::vector<unsigned int> &_vector) {
         // for (unsigned long i = 0; i < _vector.size(); ++i) {
         //     _vector[i] = result[i];
         // }
+        
         // swap vectors
+        std::swap(result, _vector);
         
-        
+        //result span, makes wrong values
+        // std::span rspan = std::span(result.begin(), result.size());
+        // // vector span
+        // std::span vspan = std::span(_vector.begin(), _vector.size());
+
+        // test with default constructuro, slow
+        // std::vector<unsigned int> temp = std::move(result);
+        // result = std::vector<unsigned int>(_vector.begin(), _vector.end());
+        // _vector = std::vector<unsigned int>(temp.begin(), temp.end());
+
+        // use std::move        
+        // std::vector<unsigned int> temp = std::move(result);
+        // result = std::move(_vector);
+        // _vector = std::move(temp);
 
         // increase digit place and check for arithmetic overflow
         unsigned long multiple = long(digitplace) * 10;
@@ -117,14 +135,26 @@ void RadixSort(std::vector<unsigned int> &_vector) {
     }
 }
 
-int main(){
+int main(int argc, char * argv[]){
     // length of list to generate and sort
     unsigned int length = 10000000; // 10^7
+    if(argv[1]){
+        if(std::string(argv[1]) == "t"){
+            length = 100;
+        }
+    }
     // unsigned int length = 100;
 
     // generate list of numbers
     auto genstart = std::chrono::high_resolution_clock::now();
-    std::vector<unsigned int> nums = gen(length);
+    std::vector<unsigned int> nums;
+    if(argv[1]){
+        if(std::string(argv[1]) == "t"){
+            nums = gen(length, 100);
+        }
+    } else {
+        nums = gen(length, 4294967295);
+    }
     auto genend = std::chrono::high_resolution_clock::now();
     auto gendiff = std::chrono::duration_cast<std::chrono::nanoseconds>(genend - genstart);
     auto gendiffmiliseconds = std::chrono::duration_cast<std::chrono::milliseconds>(genend - genstart);
@@ -139,19 +169,15 @@ int main(){
     auto sortdiffmiliseconds = std::chrono::duration_cast<std::chrono::milliseconds>(sortend - sortstart);
     auto sortdiffseconds = std::chrono::duration_cast<std::chrono::seconds>(sortend - sortstart);
 
+    if(argv[1]){
+        if(std::string(argv[1]) == "t"){
+            for(unsigned int num : nums){
+                std::cout << num << " ";
+            }
+        }
+    }
+
     // output
     std::cout << "Generation Time: " << gendiff.count() << " Nanoseconds or " << gendiffmiliseconds.count() << " Miliseconds or " << gendiffseconds.count() << " Seconds." << std::endl;
     std::cout << "Sorting Time: " << sortdiff.count() << " Nanoseconds or " << sortdiffmiliseconds.count() << " Miliseconds or " << sortdiffseconds.count() << " Seconds." << std::endl;
-}
-
-std::vector<int> nums = {1,2,3,4};
-std::vector<int> dums(4,0);
-while(true){
-    // fill in reverse
-    for(int i = nums.size() - 1; i > -1; --i){
-        dums.at(3 - i) = nums.at(i); 
-    }
-    for(int i = 0; i < nums.size(); ++i){
-        nums.at(i) = dums.at(i);
-    }
 }

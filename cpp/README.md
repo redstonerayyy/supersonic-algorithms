@@ -14,3 +14,4 @@ Diese erste Implementatin der Radixsort braucht 2.2 Sekunden zum Sortieren und 0
 
 # sortv2.1.cpp
 In this version i want to optimize the radixsort.
+Optimize by not copying but just swapping references.
