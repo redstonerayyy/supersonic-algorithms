@@ -23,7 +23,7 @@ int main(){
     unsigned int length = 10000000; // 10^7
     
     // generate list of numbers
-    auto genstart = std::chrono::high_resolution_clock::now();
+    std::chrono::_V2::high_resolution_clock::time_point = std::chrono::high_resolution_clock::now();
     std::vector<unsigned int> nums = gen(length);
     auto genend = std::chrono::high_resolution_clock::now();
     auto gendiff = std::chrono::duration_cast<std::chrono::nanoseconds>(genend - genstart);
