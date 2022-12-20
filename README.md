@@ -1,4 +1,4 @@
 # Supersonic Algorithms
 
 TL;DR:
-This repository shows with example, how to make your code faster with optimizations like JIT.
+This repository shows with examples how to make your code faster with optimizations like JIT.
