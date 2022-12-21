@@ -5,7 +5,7 @@
 
 class Timer {
 public:
-    std::map<std::string, std::chrono::_V2::high_resolution_clock::time_point> timers;
+    static std::map<std::string, std::chrono::steady_clock::time_point> timers;
     // sort
     
     static void start(std::string);
