@@ -12,3 +12,7 @@ Timer.start("standard list.sort()")
 liste.sort()
 Timer.stop("standard list.sort()")
 
+liste = generators.gen_pythonic(generators.tenmillion)
+Timer.start("standard list.sort() with pythonic")
+liste.sort()
+Timer.stop("standard list.sort() with pythonic")

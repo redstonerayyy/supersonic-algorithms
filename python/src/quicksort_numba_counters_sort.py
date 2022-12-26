@@ -6,6 +6,10 @@ import cProfile
 
 # quicksort implementation with numba
 # swap as utility function
+
+partitioncount = 0
+quicksortcount = 0
+
 @jit(nopython=True)
 def swap(array_, i1, i2):
 	temp = array_[i1]
@@ -14,8 +18,9 @@ def swap(array_, i1, i2):
 	return array_
 
 # partition
-@jit(nopython=True)
 def hoare_partition(array_, start, end):
+	global partitioncount
+	partitioncount += 1
 	pivot = array_[(start + end) // 2]
 
 	i = start - 1
@@ -36,8 +41,9 @@ def hoare_partition(array_, start, end):
 		swap(array_, i, j)
 
 # quicksort
-@jit(nopython=True)
 def quicksort_numba(array_, start, end):
+	global quicksortcount 
+	quicksortcount += 1
 	if start >= 0 and end >= 0 and start < end:
 		crossing = hoare_partition(array_, start, end)
 
@@ -45,12 +51,6 @@ def quicksort_numba(array_, start, end):
 		quicksort_numba(array_, crossing + 1, end)
 
 
-# bench
-print(os.path.basename(__file__))
-Timer.start("gen_numpy")
 liste = generators.gen_numpy(generators.tenmillion)
-Timer.stop("gen_numpy")
-
-Timer.start("custom quicksort with numba")
 quicksort_numba(liste, 0, len(liste) - 1)
-Timer.stop("custom quicksort with numba")
+print(f"Partition called {partitioncount}, Quicksort called {quicksortcount}")
