@@ -4,13 +4,14 @@
 
 // the one and only superfast radix sort
 void RadixSortFast(std::vector<unsigned int> &_vector) {
-    // start at right most digit
-    unsigned int digitplace = 1;
     // resulting array, will be used in the algorithm to store partially
     // sorted copy of the original array
     std::vector<unsigned int> result(_vector.size());
+    
     // get max value
     unsigned int max = GetMax(_vector);
+    // start at right most digit
+    unsigned int digitplace = 1;
 
     // stop if no digits are at this position
     while(max/digitplace > 0){
@@ -33,28 +34,7 @@ void RadixSortFast(std::vector<unsigned int> &_vector) {
             result[ counters_array[ digit ] ] = _vector[i];
         }
 
-        // copy to original array
-        // for (unsigned long i = 0; i < _vector.size(); ++i) {
-        //     _vector[i] = result[i];
-        // }
-        
-        // swap vectors
         std::swap(result, _vector);
-        
-        //result span, makes wrong values
-        // std::span rspan = std::span(result.begin(), result.size());
-        // // vector span
-        // std::span vspan = std::span(_vector.begin(), _vector.size());
-
-        // test with default constructuro, slow
-        // std::vector<unsigned int> temp = std::move(result);
-        // result = std::vector<unsigned int>(_vector.begin(), _vector.end());
-        // _vector = std::vector<unsigned int>(temp.begin(), temp.end());
-
-        // use std::move        
-        // std::vector<unsigned int> temp = std::move(result);
-        // result = std::move(_vector);
-        // _vector = std::move(temp);
 
         // increase digit place and check for arithmetic overflow
         unsigned long multiple = long(digitplace) * 10;

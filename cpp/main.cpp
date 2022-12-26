@@ -6,15 +6,20 @@
 #include "src/funcs.hpp"
 
 int main(){
-    std::cout << "test" << std::endl;
-    std::vector<unsigned int> numbers = gen(hundredmillion, 4294967295);
+    unsigned int maximum = 9; //maxiumum of unsigned int: 4294967295
+    // 1.
+    std::vector<unsigned int> numbers1 = gen(tenmillion, maximum);
     Timer::start("standard sort");
-    standard_sort(numbers.begin(), numbers.end());
+    standard_sort(numbers1.begin(), numbers1.end());
     Timer::stop("standard sort");
+    // 2.
+    std::vector<unsigned int> numbers2 = gen(tenmillion, maximum);
     Timer::start("radixsort");
-    RadixSort(numbers);
+    RadixSort(numbers2);
     Timer::stop("radixsort");
+    // 3.
+    std::vector<unsigned int> numbers3 = gen(tenmillion, maximum);
     Timer::start("radixsort fast");
-    RadixSortFast(numbers);
+    RadixSortFast(numbers3);
     Timer::stop("radixsort fast");
 }
