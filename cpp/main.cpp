@@ -1,12 +1,12 @@
 #include <iostream>
 #include <vector>
 #include "src/generation_lists.hpp"
-#include "src/tests.hpp"
+#include "src/standard_sort.hpp"
 #include "src/timer.hpp"
 #include "src/funcs.hpp"
 
 int main(){
-    unsigned int maximum = 9; //maxiumum of unsigned int: 4294967295
+    unsigned int maximum = 4294967295; //maxiumum of unsigned int: 4294967295
     // 1.
     std::vector<unsigned int> numbers1 = gen(tenmillion, maximum);
     Timer::start("standard sort");
