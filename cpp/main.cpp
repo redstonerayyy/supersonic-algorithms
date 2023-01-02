@@ -19,7 +19,7 @@ int main(){
     Timer::stop("radixsort");
     // 3.
     std::vector<unsigned int> numbers3 = gen(tenmillion, maximum);
-    Timer::start("radixsort fast");
+    Timer::start("radixsort faster");
     RadixSortFast(numbers3);
-    Timer::stop("radixsort fast");
+    Timer::stop("radixsort faster");
 }
