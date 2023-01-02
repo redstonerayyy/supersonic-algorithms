@@ -9,6 +9,8 @@ if __name__ == "__main__":
     Timer.start("total time")
     run(["python", f"{os.path.dirname(__file__)}/src/generation_lists.py"])
     print("")
+    run(["python", f"{os.path.dirname(__file__)}/src/standard_sort_numpy_variations.py"])
+    print("")
     run(["python", f"{os.path.dirname(__file__)}/src/standard_sort.py"])
     print("")
     run(["python", f"{os.path.dirname(__file__)}/src/quicksort_sort.py"])

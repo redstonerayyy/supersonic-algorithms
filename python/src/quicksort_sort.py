@@ -1,6 +1,7 @@
 import generators
 from timer import Timer
 import os
+import numpy as np
 
 # quicksort implementation
 # swap as utility function
@@ -8,7 +9,6 @@ def swap(array_, i1, i2):
 	temp = array_[i1]
 	array_[i1] = array_[i2]
 	array_[i2] = temp
-	return array_
 
 # partition
 def hoare_partition(array_, start, end):
@@ -29,7 +29,10 @@ def hoare_partition(array_, start, end):
 		if i >= j:
 			return j
 		
-		swap(array_, i, j)
+		# swap(array_, i, j)
+		temp = array_[i]
+		array_[i] = array_[j]
+		array_[j] = temp
 
 # quicksort
 def quicksort(array_, start, end):
@@ -43,9 +46,17 @@ def quicksort(array_, start, end):
 # bench
 print(os.path.basename(__file__))
 Timer.start("gen_numpy")
-liste = generators.gen_numpy(generators.tenmillion)
+liste = np.random.randint(0, 4294967295, generators.onemillion)
 Timer.stop("gen_numpy")
 
 Timer.start("custom quicksort")
 quicksort(liste, 0, len(liste) - 1)
 Timer.stop("custom quicksort")
+
+Timer.start("gen_pythonic")
+liste_zwei = generators.gen_pythonic(generators.onemillion)
+Timer.stop("gen_pythonic")
+
+Timer.start("custom quicksort with pythonic")
+quicksort(liste_zwei, 0, len(liste_zwei) - 1)
+Timer.stop("custom quicksort with pythonic")

@@ -1,3 +1,13 @@
 /.vscode
+# build stuff
 /**/__pycache__/**
 /**/build/**
+/python/src/cython/build
+# venv
+/python/src/cython/bin
+/python/src/cython/include
+/python/src/cython/lib
+/python/src/cython/lib64
+/python/src/cython/pyvenv.cfg
+/python/src/cython/*.c
+/python/src/cython/*.so
