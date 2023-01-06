@@ -1,3 +1,5 @@
+.PHONY: build
+
 clean:
 	rm -rf ./build
 	rm -rf ./__pycache__
@@ -11,3 +13,10 @@ setup:
 
 install-deps:
 	pip install cython numpy
+
+build:
+	python setup.py build_ext --inplace
+
+test: build
+	clear
+	python main.py

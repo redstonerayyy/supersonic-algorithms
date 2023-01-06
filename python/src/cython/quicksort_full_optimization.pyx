@@ -1,9 +1,11 @@
 #!python
 #cython: language_level=3
+# http://docs.cython.org/en/latest/src/tutorial/numpy.html
+# http://docs.cython.org/en/latest/src/tutorial/cython_tutorial.html
+
 # cython and numpy stuff
 import cython
 
-# http://docs.cython.org/en/latest/src/tutorial/numpy.html
 import numpy as np
 cimport numpy as np # additional informaton
 np.import_array() # necessary
@@ -21,7 +23,7 @@ from timer import Timer
 # quicksort implementation
 # partition
 # no effect, because it does not occur i presume
-# @cython.boundscheck(False) # turn off bounds-checking for entire function
+@cython.boundscheck(False) # turn off bounds-checking for entire function
 @cython.wraparound(False)  # turn off negative index wrapping for entire function
 def hoare_partition(np.ndarray[DTYPE_t] array_, int start, int end):
 	pivot = array_[(start + end) // 2]
@@ -48,8 +50,8 @@ def hoare_partition(np.ndarray[DTYPE_t] array_, int start, int end):
 
 # quicksort
 # no effect, because it does not occur i presume
-# @cython.boundscheck(False) # turn off bounds-checking for entire function
-# @cython.wraparound(False)  # turn off negative index wrapping for entire function
+@cython.boundscheck(False) # turn off bounds-checking for entire function
+@cython.wraparound(False)  # turn off negative index wrapping for entire function
 def quicksort(np.ndarray[DTYPE_t] array_, int start, int end):
 	cdef DTYPE_t crossing
 	if start >= 0 and end >= 0 and start < end:
@@ -60,10 +62,9 @@ def quicksort(np.ndarray[DTYPE_t] array_, int start, int end):
 
 
 # bench
-def test():
-	# print(os.path.basename(__file__))
+def quicksort_full_optimization():
 	# liste = [random.randint(0, 4294967295) for i in range(10000000)]
 	cdef np.ndarray[DTYPE_t] liste = np.random.randint(0, 4294967295, 10000000)
-	Timer.start("cython")
+	Timer.start("quicksort_full_optimization")
 	quicksort(liste, 0, len(liste) - 1)
-	Timer.stop("cython")
+	Timer.stop("quicksort_full_optimization")

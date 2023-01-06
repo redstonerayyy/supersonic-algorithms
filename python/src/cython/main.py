@@ -1,0 +1,7 @@
+from quicksort_full_optimization import quicksort_full_optimization
+from quicksort_with_types import quicksort_with_types
+from quicksort_no_optimization import quicksort_no_optimization
+
+quicksort_full_optimization()
+quicksort_with_types()
+quicksort_no_optimization()
