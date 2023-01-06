@@ -51,6 +51,6 @@ def quicksort_numba(array_, start, end):
 		quicksort_numba(array_, crossing + 1, end)
 
 
-liste = generators.gen_numpy(generators.tenmillion)
+liste = generators.gen_numpy(generators.onemillion)
 quicksort_numba(liste, 0, len(liste) - 1)
 print(f"Partition called {partitioncount}, Quicksort called {quicksortcount}")

@@ -10,4 +10,4 @@ class Timer:
 	def stop(name):
 		diff = time.time_ns() - Timer.timers[name]
 		diffseconds = diff / (10 ** 9) 
-		print(name, "took", round(diffseconds, 5), "seconds to complete.")
+		print(name, ":", round(diffseconds, 5), "Seconds")

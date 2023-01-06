@@ -11,3 +11,9 @@
 /python/src/cython/pyvenv.cfg
 /python/src/cython/*.c
 /python/src/cython/*.so
+# latex
+/**/*.aux
+/**/*.fdb_latexmk
+/**/*.fls
+/**/*.log
+/**/*.synctex.gz

@@ -45,18 +45,15 @@ def quicksort(array_, start, end):
 
 # bench
 print(os.path.basename(__file__))
-Timer.start("gen_numpy")
-liste = np.random.randint(0, 4294967295, generators.onemillion)
-Timer.stop("gen_numpy")
 
-Timer.start("custom quicksort")
+liste = generators.gen_numpy(generators.tenmillion)
+
+Timer.start("custom quicksort on numpy array")
 quicksort(liste, 0, len(liste) - 1)
-Timer.stop("custom quicksort")
+Timer.stop("custom quicksort on numpy array")
 
-Timer.start("gen_pythonic")
-liste_zwei = generators.gen_pythonic(generators.onemillion)
-Timer.stop("gen_pythonic")
+liste_zwei = generators.gen_pythonic(generators.tenmillion)
 
-Timer.start("custom quicksort with pythonic")
+Timer.start("custom quicksort on python list")
 quicksort(liste_zwei, 0, len(liste_zwei) - 1)
-Timer.stop("custom quicksort with pythonic")
+Timer.stop("custom quicksort on python list")

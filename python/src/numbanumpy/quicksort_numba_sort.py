@@ -1,9 +1,8 @@
 import generators
 from timer import Timer
 from numba import jit
-from numba.typed import List
 import os
-import random
+
 
 # quicksort implementation with numba
 # swap as utility function
@@ -48,18 +47,15 @@ def quicksort_numba(array_, start, end):
 
 # bench
 print(os.path.basename(__file__))
-Timer.start("gen_numpy")
+
 liste = generators.gen_numpy(generators.tenmillion)
-Timer.stop("gen_numpy")
 
-Timer.start("custom quicksort with numba")
+Timer.start("custom quicksort with numba on numpy array")
 quicksort_numba(liste, 0, len(liste) - 1)
-Timer.stop("custom quicksort with numba")
+Timer.stop("custom quicksort with numba on numpy array")
 
-Timer.start("gen_pythonic with numba.typed list")
-typed_a = List([random.randint(0, 4294967295) for x in range(generators.tenmillion)])
-Timer.stop("gen_pythonic with numba.typed list")
+typed_a = generators.gen_numba_typed(generators.tenmillion)
 
-Timer.start("custom quicksort with numba and pythonic")
+Timer.start("custom quicksort with numba on numba.typed list")
 quicksort_numba(typed_a, 0, len(typed_a) - 1)
-Timer.stop("custom quicksort with numba and pythonic")
+Timer.stop("custom quicksort with numba on numba.typed list")

@@ -2,5 +2,5 @@
 
 -   Datentypen/Speicherbedarf in verschiedenen Sprachen
 -   Vergleich von Algorithmen in Sprachen
--   Cython?
+-   Cython, Numba, Numpy
 -
