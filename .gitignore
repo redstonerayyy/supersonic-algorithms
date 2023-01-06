@@ -1,3 +1,4 @@
+# vscode
 /.vscode
 # build stuff
 /**/__pycache__/**
@@ -17,3 +18,8 @@
 /**/*.fls
 /**/*.log
 /**/*.synctex.gz
+# intellij
+/**/cmake-build-debug
+/cmake-build-debug
+/**/.idea
+/.idea

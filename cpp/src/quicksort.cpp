@@ -4,7 +4,29 @@
 #include <cstdint>
 
 std::uint64_t HoarePartition(std::vector<unsigned int> &vector, std::uint64_t start, std::uint64_t end){
-    
+    unsigned int pivot = vector.at( (int)((start + end) / 2) );
+    std::uint64_t i = start - 1;
+    std::uint64_t j = end + 1;
+
+    while(true){
+        ++i;
+        while(vector.at(i) < pivot){
+            ++i;
+        }
+
+        --j;
+        while(vector.at(j) > pivot){
+            --j;
+        }
+
+        if(i >= j){
+            return j;
+        }
+        
+        unsigned int temp = vector.at(i);
+        vector.at(i) = vector.at(j);
+        vector.at(j) = temp;
+    }
 }
 
 

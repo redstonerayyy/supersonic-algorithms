@@ -2,6 +2,7 @@
 #include <vector>
 #include "src/generation_lists.hpp"
 #include "src/standard_sort.hpp"
+#include "src/quicksort.hpp"
 #include "src/timer.hpp"
 #include "src/funcs.hpp"
 
@@ -22,4 +23,9 @@ int main(){
     Timer::start("radixsort faster");
     RadixSortFast(numbers3);
     Timer::stop("radixsort faster");
+    // 4.
+    std::vector<unsigned int> numbers4 = gen(tenmillion, maximum);
+    Timer::start("custom quicksort");
+    QuickSort(numbers4, 0, numbers4.size() - 1);
+    Timer::stop("custom quicksort");
 }
