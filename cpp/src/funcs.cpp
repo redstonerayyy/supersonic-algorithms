@@ -24,7 +24,7 @@ void SwapElements(std::vector<unsigned int> &_vector, int index1, int index2){
 // calculate prefixsum on a vector
 void PrefixSum(std::vector<int> &_vector){
     for (int i = 1; i < _vector.size(); ++i) {
-        _vector[i] = _vector[i - 1] + _vector[i];
+        _vector[i] += _vector[i - 1];
     }
 }
 

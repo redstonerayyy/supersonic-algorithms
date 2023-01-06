@@ -9,5 +9,5 @@ public:
     // sort
     
     static void start(std::string);
-    static void stop(std::string);
+    static long long stop(std::string);
 };

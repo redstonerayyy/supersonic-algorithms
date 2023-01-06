@@ -8,9 +8,10 @@ void Timer::start(std::string name){
     timers[name] = timenow;
 }
 
-void Timer::stop(std::string name){
+long long Timer::stop(std::string name){
     auto timenow = std::chrono::steady_clock::now();
     auto diff = std::chrono::duration_cast<std::chrono::milliseconds>(timenow - timers[name]);
     auto diffseconds = std::chrono::duration_cast<std::chrono::duration<double>>(timenow - timers[name]);
     std::cout << name << " took Miliseconds: " << diff.count() << " " << "Seconds: " << diffseconds.count() << std::endl;
+    return diff.count();
 }
