@@ -43,8 +43,8 @@ func quicksort(array []int, start int, end int) {
 }
 
 func main() {
-	length := 7000000
-	array := make([]int, 7000000)
+	length := 8000000 // 7000000 is working (less than 1GB)
+	array := make([]int, 8000000)
 	maximum := 4294967295
 
 	for i := 0; i < length; i++ {
@@ -55,5 +55,5 @@ func main() {
 	quicksort(array, 0, len(array)-1)
 	t := time.Now()
 	fmt.Println(t.Sub(start))
-	time.Sleep(10 * time.Second)
+	// time.Sleep(10 * time.Second)
 }
