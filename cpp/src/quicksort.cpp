@@ -5,7 +5,7 @@
 
 std::uint64_t HoarePartition(std::vector<unsigned int> &vector, std::uint64_t start, std::uint64_t end){
     unsigned int pivot = vector.at( (int)((start + end) / 2) );
-    std::uint64_t i = start - 1;
+    std::uint64_t i = start - 1; // does overflow, but doesn't matter as 1 is added
     std::uint64_t j = end + 1;
 
     while(true){

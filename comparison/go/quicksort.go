@@ -43,8 +43,10 @@ func quicksort(array []int, start int, end int) {
 }
 
 func main() {
-	length := 8000000 // 7000000 is working (less than 1GB)
-	array := make([]int, 8000000)
+	length := 7000000 // 7000000 is working (less than 1GB)
+	array := make([]int, length)
+	// array := new([]int, 8000000)
+	// array := [8000000]int{}[:]
 	maximum := 4294967295
 
 	for i := 0; i < length; i++ {
