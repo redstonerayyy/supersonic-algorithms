@@ -9,3 +9,4 @@ clean:
 
 run: build
 	./build/main
+	./build/src/datastructures/datastructures
