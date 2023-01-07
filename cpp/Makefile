@@ -9,4 +9,5 @@ clean:
 
 run: build
 	# ./build/main
-	./build/src/datastructures/datastructures
+	# ./build/src/datastructures/datastructures
+	./build/src/hellofradixsort/radixhell
