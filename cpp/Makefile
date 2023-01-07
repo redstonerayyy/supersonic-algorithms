@@ -8,5 +8,5 @@ clean:
 	rm -rf ./build
 
 run: build
-	./build/main
+	# ./build/main
 	./build/src/datastructures/datastructures
