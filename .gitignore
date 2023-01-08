@@ -25,3 +25,5 @@
 /.idea
 # go
 comparison/go/quicksort
+# java output
+**/*.class
