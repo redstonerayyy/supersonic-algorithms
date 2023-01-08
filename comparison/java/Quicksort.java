@@ -7,15 +7,18 @@ import java.util.stream.Collectors;
 
 class Quicksort {
     public static void main(String[] args) {
-        List<Integer> liste = new Random().ints(10000000, 0, Integer.MAX_VALUE)
+        long tenmillion = 10000000;
+        int maximum = Integer.MAX_VALUE;
+        List<Integer> liste = new Random().ints(tenmillion, 0, maximum)
                 .boxed()
                 .collect(Collectors.toList());
 
+        // liste.forEach(System.out::print);
         long start = System.nanoTime();
         quicksort(liste, 0, liste.size() - 1);
         long end = System.nanoTime();
         System.out.println((end - start) / 1000000);
-        // liste.forEach(System.out::println);
+        // liste.forEach(System.out::print);
     }
 
     private static int hoare_partition(List<Integer> list, int start, int end) {
