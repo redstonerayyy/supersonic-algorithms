@@ -1,12 +1,59 @@
 \documentclass[10pt,a4paper]{article}
 
-\usepackage[margin={1.5in, 1in}]{geometry}
-\usepackage{graphicx, amsmath, amsfonts, array}
+% packages, images, math
+\usepackage{geometry, graphicx, amsmath, amsfonts, array}
+
+% colors
+\usepackage[dvipsnames]{xcolor}
+
+% for urls
+\usepackage[colorlinks=true,urlcolor=ProcessBlue,linkcolor=ForestGreen]{hyperref}
 
 % Remove Indentation at new line
 \setlength{\parindent}{0cm}
 
+% Set Font to Arial
+% \usepackage{fontspec}
+% \setmainfont{Arial}
+
+% Set Font to Helvet
+\usepackage{helvet}
+\renewcommand{\familydefault}{\sfdefault}
+
+% Set Layout
+\geometry{
+    a4paper,
+    left=25mm,
+    right=25mm,
+    top=25mm,
+    bottom=20mm
+}
+
+% Redefine title
+\makeatletter
+\def\@maketitle{%
+  \newpage
+  \null
+  \vskip 2em%
+  \begin{center}%
+  \let \footnote \thanks
+    {\Huge\bfseries\@title \par}%
+    \vskip 1.5em%
+    {\large
+      \lineskip .5em%
+      \begin{tabular}[t]{c}%
+        \@author
+      \end{tabular}\par}%
+    \vskip 1em%
+    {\large \@date}%
+  \end{center}%
+  \par
+  \vskip 1.5em}
+\makeatother
+
 \begin{document}
+
+
 
 \title{Supersonic Algorithms}
 \author{Anton Rodenwald}
@@ -15,26 +62,57 @@
 
 \clearpage
 \section*{Kurzfassung}
--effizienz , ressourcen, geld
+Nachdem wir im Informatikunterricht der SEK II Sortieralgorithmen behandelt hatten,
+stellte ich mir die Frage, wie man am schnellsten eine Liste von 10 Millionen zufällig Generierten Zahlen
+sortieren kann und welche Programmiersprache und welche Techniken man nutzen sollte.
 
--wie erreicht man dies mit algorithmen?
-
--python ist langsam, kompiliert ist schnell, e.g. C++, implementation entscheident
-
--programme, implementation, diagramme
-
--Ergebnisse
-
--mehr oder weniger
+Daraus entwickelte sich dann die etwas allgemeinere Fragestellung, nämlich welche Optimierungen
+erhöhen die Ausführgeschwindigkeit von Programmen am meisten und wieso?
+Mir war bekannt, dass Python, was wir im Unterricht verwendet hatten, als eine der langsamsten Sprachen gilt, 
+weswegen ich neben Python auch noch C++ wählte, was allgemein als eine der schnellsten Sprache gilt.
+Ich implementierte anschließend verschiedene Variationen der Quicksort und anderer Algorithmen und testete so, 
+in welchem Maß Optimierungsansätze die Performance beeinflussten.
+Dabei kam ich zu dem Ergebnis, dass die Python Bibliotheken "numpy" und "numba" der Bibliothek "cython" deutlich 
+überlegen waren, doch mir wurde vorallem klar, dass alle diese Bibliotheken sich auf die Ausführung von immer
+mehr hochperformantem C Code verlassen, also die Ausführung von Python Code nicht optimiert wurde.
+Im Vergleich zu C++ wird der große Unterschiede zwischen interpretierten und kompilierten Sprachen klar
+und welche Optimierungsmöglichkeit bei diesen unterschiedlichen Konzepten möglich sind. 
+Insgesamt zeigte sich, dass sich fast alle getesteten Sprachen auf das Aufrufen von schnellen, bereits kompilierten
+C/C++ Funktionen verlassen und somit eher diese die untere Grenze der Optimierung darstellen, weil die Sprache beim 
+Aufrufen dieser Funktionen beliebig sein kann.
 
 \clearpage
 \section*{Inhaltsverzeichnis}
 tbd
 
 \clearpage
-\section*{Einleitung}
+\section*{1. Einleitung}
+Motivation
+
+Fragestellung
+
+Fokus Implementierung, nicht Algorithmik
+
+Aktuelle Lage
+
+Anknüpfung an andere meinungen, hypothese
+
 \clearpage
 \section*{Vorgehensweise, Materialien, Methode}
+
+testen
+
+zeitmessung
+
+\cite{terdiman2000}
+
+
+software versionen
+
+python, c++, java, javascript, lua, go, julia
+
+
+
 \clearpage
 \section*{Ergebnisse}
 \clearpage
@@ -42,7 +120,23 @@ tbd
 \clearpage
 \section*{Zusammenfassung}
 \clearpage
-\section*{Literatur}
+\section*{Literaturverzeichnis}
 
+\begin{thebibliography}{10}
+    \bibitem{terdiman2000}
+        Pierre Terdiman,
+        \textit{Radix Sort Revisited},
+        \url{http://codercorner.com/RadixSortRevisited.htm}
+        \textit{Zugriff am: 10.1.23},
+        \textit{Veröffentlicht am 4.01.2000}
+    
+    \bibitem{michael2001}
+        Michael Herf,
+        \textit{Radix Tricks},
+        \url{http://stereopsis.com/radix.html}
+        \textit{Zugriff am: 10.1.23},
+        \textit{Veröffentlicht im December 2001}
+
+\end{thebibliography}
 
 \end{document}

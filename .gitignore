@@ -18,6 +18,7 @@
 /**/*.fls
 /**/*.log
 /**/*.synctex.gz
+/**/*.out
 # intellij
 /**/cmake-build-debug
 /cmake-build-debug

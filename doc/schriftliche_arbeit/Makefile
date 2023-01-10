@@ -4,3 +4,4 @@ clean:
 	rm -rf ./*.synctex.gz
 	rm -rf ./*.log
 	rm -rf ./*.fls
+	rm -rf ./*.out
