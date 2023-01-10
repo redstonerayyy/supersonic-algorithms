@@ -17,16 +17,16 @@ void RadixSortFast(std::vector<unsigned int> &_vector) {
     // stop if no digits are at this position
     long long timetaken = 0;
     while(max/digitplace > 0){
-        Timer::start("loop");
-        Timer::start("calc");
+        // Timer::start("loop");
+        // Timer::start("calc");
         std::vector<int> counters_array(10, 0);
         CountingRoutine(_vector, digitplace, 0, _vector.size(), counters_array, 0);
 
-        Timer::stop("calc");
+        // Timer::stop("calc");
         // apply prefixsum to this vector
         PrefixSum(counters_array);
 
-        Timer::start("build");
+        // Timer::start("build");
         //rebuilt the new array based on this sorting pass
         for (int i = int(_vector.size()) - 1; i >= 0; i--) {
             // get the value of the prefixsum array at the position
@@ -41,9 +41,9 @@ void RadixSortFast(std::vector<unsigned int> &_vector) {
         }
 
         std::swap(result, _vector);
-        Timer::stop("build");
+        // Timer::stop("build");
 
-        timetaken += Timer::stop("loop");
+        // timetaken += Timer::stop("loop");
         // increase digit place and check for arithmetic overflow
         unsigned long multiple = long(digitplace) * 10;
         if(multiple > std::numeric_limits<unsigned int>::max()){
@@ -53,5 +53,5 @@ void RadixSortFast(std::vector<unsigned int> &_vector) {
         }
         // increase bit place
     }
-    std::cout << timetaken << "\n";
+    // std::cout << timetaken << "\n";
 }

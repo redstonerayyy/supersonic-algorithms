@@ -12,9 +12,9 @@ if __name__ == "__main__":
     Timer.start("fib with ctypes")
     res1 = cpplib.Fibonacci(num)
     Timer.stop("fib with ctypes")
-    Timer.start("fib python")
+    Timer.start("fib python and numba")
     res2 = fib(num)
-    Timer.stop("fib python")
+    Timer.stop("fib python and numba")
     print(res1)
     print(res2)
 

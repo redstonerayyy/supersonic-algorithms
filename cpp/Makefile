@@ -9,6 +9,6 @@ clean:
 	rm -rf ./build
 
 run: build
-	# ./build/main
-	# ./build/src/datastructures/datastructures
+	./build/main
+	./build/src/datastructures/datastructures
 	./build/src/hellofradixsort/radixhell
