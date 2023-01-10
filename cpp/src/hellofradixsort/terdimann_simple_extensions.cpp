@@ -115,6 +115,8 @@ void RadixSort(std::vector<std::uint32_t> &vector){
     Timer::stop("build", true);
 }
 
+void RadixSortSimple(std::vector<std::uint32_t> &vector);
+
 int main(){
     unsigned int maximum = 0xFFFFFFFF; // 4294967295
     // unsigned int maximum = 0x00FFFFFF; // 16777215
@@ -123,5 +125,11 @@ int main(){
     std::vector<std::uint32_t> liste = gen(tenmillion, maximum);
     Timer::start("terdimann");
     RadixSort(liste);
+    Timer::stop("terdimann", true);
+
+    std::vector<std::uint32_t> liste2 = gen(tenmillion, maximum);
+
+    Timer::start("terdimann");
+    RadixSortSimple(liste2);
     Timer::stop("terdimann", true);
 }
