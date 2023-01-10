@@ -1,4 +1,4 @@
-\documentclass[10pt,a4paper]{article}
+\documentclass[12pt,a4paper]{article}
 
 % packages, images, math
 \usepackage{geometry, graphicx, amsmath, amsfonts, array}
@@ -53,8 +53,6 @@
 
 \begin{document}
 
-
-
 \title{Supersonic Algorithms}
 \author{Anton Rodenwald}
 
@@ -65,46 +63,54 @@
 Nachdem wir im Informatikunterricht der SEK II Sortieralgorithmen behandelt hatten,
 stellte ich mir die Frage, wie man am schnellsten eine Liste von 10 Millionen zufällig Generierten Zahlen
 sortieren kann und welche Programmiersprache und welche Techniken man nutzen sollte.
-
 Daraus entwickelte sich dann die etwas allgemeinere Fragestellung, nämlich welche Optimierungen
 erhöhen die Ausführgeschwindigkeit von Programmen am meisten und wieso?
 Mir war bekannt, dass Python, was wir im Unterricht verwendet hatten, als eine der langsamsten Sprachen gilt, 
 weswegen ich neben Python auch noch C++ wählte, was allgemein als eine der schnellsten Sprache gilt.
 Ich implementierte anschließend verschiedene Variationen der Quicksort und anderer Algorithmen und testete so, 
 in welchem Maß Optimierungsansätze die Performance beeinflussten.
-Dabei kam ich zu dem Ergebnis, dass die Python Bibliotheken "numpy" und "numba" der Bibliothek "cython" deutlich 
-überlegen waren, doch mir wurde vorallem klar, dass alle diese Bibliotheken sich auf die Ausführung von immer
-mehr hochperformantem C Code verlassen, also die Ausführung von Python Code nicht optimiert wurde.
-Im Vergleich zu C++ wird der große Unterschiede zwischen interpretierten und kompilierten Sprachen klar
-und welche Optimierungsmöglichkeit bei diesen unterschiedlichen Konzepten möglich sind. 
-Insgesamt zeigte sich, dass sich fast alle getesteten Sprachen auf das Aufrufen von schnellen, bereits kompilierten
-C/C++ Funktionen verlassen und somit eher diese die untere Grenze der Optimierung darstellen, weil die Sprache beim 
-Aufrufen dieser Funktionen beliebig sein kann.
+Dabei kam ich zu dem Ergebnis, dass die besten Python Bibliotheken zur Optimierung "numpy" und "numba" waren,
+wobei C++ trotzdem schneller war, womit sich meine Hypothese bestätigte.
+Dies erklärte ich mir dadurch, dass die Python eine Interpretierte und C++ eine kompilierte Sprache ist, diese
+beiden also gänzlich verschiedenen und somit auch die Möglichkeiten zur Optimierung total verschieden sind.
+Schlussendlich gelang es mir noch unter Nutzung von AVX2, in C++ eine 4x schnellere Version als die standardmäßig 
+Vorhande zu entwickeln, einem speziellen Befehlssatz, was mir zeigte, dass es im Gebiet der Codeoptimierung
+noch viel zu entdecken gibt.
 
 \clearpage
 \section*{Inhaltsverzeichnis}
-tbd
+
+\hyperref[sec:einleitung]{Einleitung}
+
+\hyperref[sec:methode]{Vorgehensweise, Materialien, Methode}
 
 \clearpage
 \section*{1. Einleitung}
-Motivation
+\label{sec:einleitung}
 
-Fragestellung
-
-Fokus Implementierung, nicht Algorithmik
-
-Aktuelle Lage
-
-Anknüpfung an andere meinungen, hypothese
+Im Informatik Leistungskurs des 12 Jahrgang beschäftigten wir uns nach den Herbstferien mit
+der Laufzeit von Algorithmen am Beispiel der Quicksort, einem Sortieralgorithmus. 
+Nach diesem thematischen Impuls ergab sich mein Projekt zur Erforschung von Sortieralgorithmen, 
+wobei ich mich schnell auf die Aspekte der Implementation und tatsächlichen Ausführung 
+von Algorithmen fokussierte, da Sortieralgorithmen algorithmisch bereits sehr weit erforscht sind.
+Ich entschied mich deswegen, nicht nach besseren Algorithmen zu suchen, sondern nach Wegen, 
+mein ursprüngliches Program in Python in seiner Ausführung zu beschleunigen und so vorteilhafte
+Wege der Geschwindigkeitsoptimierung zu entdecken.
+Ich stellte mir die Frage, welche Optimierungen die Ausführgeschwindigkeit von Programmen
+am meisten erhöhen und wieso?
+Außerdem wollte ich ein möglichst schnelles Program zur Sortierung implementieren, weswegen ich
+neben Python, einer interpretierten und als langsam geltenden Sprache, noch C++, 
+eine hochperformante, kompilierte Sprache wählte.
+Zusätzlich entschied ich mich noch, in einigen anderen Sprachen meine Quicksort zu implementieren,
+weil mich ein Vergleich verschiedner Sprachen interessierte.
 
 \clearpage
 \section*{Vorgehensweise, Materialien, Methode}
+\label{sec:methode}
 
 testen
 
 zeitmessung
-
-\cite{terdiman2000}
 
 
 software versionen

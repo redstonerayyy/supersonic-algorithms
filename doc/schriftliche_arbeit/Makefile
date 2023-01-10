@@ -5,3 +5,4 @@ clean:
 	rm -rf ./*.log
 	rm -rf ./*.fls
 	rm -rf ./*.out
+	rm -rf ./*.toc

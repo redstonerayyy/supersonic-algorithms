@@ -19,6 +19,7 @@
 /**/*.log
 /**/*.synctex.gz
 /**/*.out
+/**/*.toc
 # intellij
 /**/cmake-build-debug
 /cmake-build-debug
