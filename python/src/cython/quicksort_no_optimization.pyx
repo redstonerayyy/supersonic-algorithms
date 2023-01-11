@@ -46,6 +46,6 @@ def quicksort(array_, start, end):
 def quicksort_no_optimization():
 	# liste = [random.randint(0, 4294967295) for i in range(10000000)]
 	liste = np.random.randint(0, 4294967295, 10000000)
-	Timer.start("quicksort_with_types")
+	Timer.start("quicksort_no_optimization")
 	quicksort(liste, 0, len(liste) - 1)
-	Timer.stop("quicksort_with_types")
+	Timer.stop("quicksort_no_optimization")
