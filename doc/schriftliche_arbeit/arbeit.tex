@@ -1,5 +1,12 @@
 \documentclass[12pt,a4paper]{article}
 
+% change to german
+\usepackage[german]{babel}
+
+% better hyphenation
+\usepackage[final]{microtype}
+\usepackage{csquotes}
+
 % packages, images, math
 \usepackage{geometry, graphicx, amsmath, amsfonts, array, multicol, multirow}
 
@@ -72,7 +79,7 @@
 
     Projektbetreuerin: & Birgit Ziegenmeyer \\
 
-    Institution: & Umgesetzt an der Schillerschule Hannover \\
+    Institution: & Schillerschule Hannover \\
     
     Thema des Projektes: 
     & Analyse verschiedener Implementationen von Algorith- \\
@@ -98,8 +105,8 @@ Nachdem wir im Informatikunterricht der SEK II Sortieralgorithmen behandelt hatt
 stellte ich mir die Frage, wie man am schnellsten eine Liste von 10 Millionen zufällig Generierten Zahlen
 sortieren kann und welche Programmiersprache und welche Techniken man nutzen sollte.
 Daraus entwickelte sich dann die etwas allgemeinere Fragestellung, 
-\newline nämlich welche Optimierungen erhöhen die Ausführgeschwindigkeit von Programmen am meisten und wieso?
-Mir war bekannt, dass Python, was wir im Unterricht verwendet hatten, als eine der langsamsten \newline Sprachen gilt, 
+nämlich welche Optimierungen erhöhen die Ausführgeschwindigkeit von Programmen am meisten und wieso?
+Mir war bekannt, dass Python, was wir im Unterricht verwendet hatten, als eine der langsamsten Sprachen gilt, 
 weswegen ich neben Python auch noch C++ wählte, was allgemein als eine der schnellsten Sprachen gilt.
 Ich implementierte anschließend verschiedene Variationen der Quicksort und anderer Algorithmen und testete so, 
 in welchem Maß Optimierungsansätze die Performance beeinflussten.
@@ -151,8 +158,7 @@ da Python im allgemeinen als langsam gilt und C++ als sehr performant und schnel
 \section{Vorgehensweise, Materialien, Methode}
 
 \subsection{Vorgehen}
-Meine Vorgehensweise beruhte darauf, mich im Internet über Möglichkeiten der Optimierung zu informieren und
-diese geschickt neu zu kombinieren und die erreichten Geschwindigkeiten miteinander zu vergleichen, wodurch
+Meine Vorgehensweise beruhte darauf, mich im Internet über Möglichkeiten der Optimierung zu informieren und diese geschickt neu zu kombinieren und die erreichten Geschwindigkeiten miteinander zu vergleichen, wodurch
 ich eine Qualitative Entscheidung treffen konnte, welche Variationen die größten Performanceverbesserungen bringen.
 Dazu wählte ich die Python Bibliotheken \textit{numpy}, \textit{numba}, \textit{ctypes} und \textit{cython} und
 testete auch Funktionen aus den Standardbibliotheken der Sprachen.
@@ -166,15 +172,18 @@ weitere Tests erforderten.
 Bei der Implementation einer Radixsort, einem sehr schnellen Sortierverfahren, nutze ich außerdem 2 Publikationen 
 zur Verbesserung meiner eigenen Variante und schuf so die Untergrenze all meiner getesteten Implementationen
 \cite{terdiman} \cite{michael}.
-Im Zuge dessen beschäftigte ich mich auch mit dem Konzept von AVX2 und nutze diesen erweiterten Befehlssatz
+Im Zuge dessen beschäftigte ich mich auch mit dem Konzept von AVX2 und nutze diesen erweiterten Befehlssatz, den
+ich im Rahmen der Ergebnisse noch weiter beschreiben werde.
 \cite{intelavxdocs} \cite{avxguide}.
+
+
 
 \clearpage
 
 \subsection{Materialien}
 Für mein Projekt nutze ich meinen Desktop PC (Linux) und meinen Laptop (Linux) zur Implementation und Ausführung der Programme.
 Dabei nutze ich verschiedene Arten von Software zum entwickeln und Ausführen meiner Programme und zum erstellen meiner
-schriftlichen Arbeit.
+schriftlichen Arbeit. \newline
 
 Ich nutze dabei diese Software in der jeweiligen Version:
 \begin{itemize}
@@ -205,14 +214,13 @@ So hatten alle Programme die Gleiche Aufgabe zu lösen, wodurch Vergleichbarkeit
 Wichtig war auch, die finalen Tests direkt nach einem Neustart des PCs ohne andere laufende Programme
 zu machen, damit es durch variierende Prozessorauslastung keine Verfälschungen gab. 
 
-\clearpage
-
-\normalsize \begin{multicols}{2}
+\begin{multicols}{2}
+    
     \begin{center}
         \includegraphics[width=.5\textwidth]{screenshots/pythontimer.png}
         Abb. 1
     \end{center}
-
+    
     \columnbreak
     
     \begin{center}
@@ -221,11 +229,8 @@ zu machen, damit es durch variierende Prozessorauslastung keine Verfälschungen 
         \includegraphics[width=.5\textwidth]{screenshots/outputexample.png}
         Abb. 3
     \end{center}
-
-
-
+    
 \end{multicols}
-
 
 \subsection{Schwierigkeiten}
 Die größte Schwierigkeit war, dass ich auf diesem Themengebiet noch nicht sehr viel Vorerfahrung hatte.
@@ -239,12 +244,43 @@ Ein für mich nicht lösbares Problem war auch die Implementierung in Go, wo nur
 einer 7 Millionen Zahlen langen Liste möglich, da bei mehr Zahlen mehr Arbeitsspeicher benötigt wurde,
 als Go in einem Programmteil erlaubt. Der hohe Verbrauch an Arbeitsspeicher kommt meinen Vermutunge
 nach von der Implementation von Recursion in Go, die nicht für sehr Tiefe Rekursion geeignet scheint
-\cite{godeeprecursionsto} \cite{goroutinesize}.
+\cite{godeeprecursions} \cite{goroutinesize}.
 
 
 
 \clearpage
 \section{Ergebnisse}
+
+\begin{center}
+    \includegraphics[width=1\textwidth]{./diagramme/bilder/listengenerierung.png}
+\end{center}
+
+\begin{center}
+    \includegraphics[width=1\textwidth]{./diagramme/bilder/sortierungen_cython_langsam.png}
+\end{center}
+
+\begin{center}
+    \includegraphics[width=1\textwidth]{./diagramme/bilder/sortieren_numba_numpy.png}
+\end{center}
+
+\begin{center}
+    \includegraphics[width=1\textwidth]{./diagramme/bilder/ctypescpp.png}
+\end{center}
+
+\begin{center}
+    \includegraphics[width=1\textwidth]{./diagramme/bilder/comparison.png}
+\end{center}
+
+Zufallszahlengenerierung
+
+Langsam
+
+NumPy numba
+
+c++, ctypes
+
+Vergleich der Sprachen
+
 \clearpage
 \section{Diskussion}
 \clearpage
