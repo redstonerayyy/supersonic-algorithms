@@ -20,6 +20,10 @@
 /**/*.synctex.gz
 /**/*.out
 /**/*.toc
+/**/*.bcf
+/**/*.xml
+/**/*.bbl
+/**/*.blg
 # intellij
 /**/cmake-build-debug
 /cmake-build-debug

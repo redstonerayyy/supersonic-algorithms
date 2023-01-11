@@ -6,3 +6,7 @@ clean:
 	rm -rf ./*.fls
 	rm -rf ./*.out
 	rm -rf ./*.toc
+	rm -rf ./*.xml
+	rm -rf ./*.bcf
+	rm -rf ./*.blg
+	rm -rf ./*.bbl
