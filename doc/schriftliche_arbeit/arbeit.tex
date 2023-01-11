@@ -253,33 +253,94 @@ nach von der Implementation von Recursion in Go, die nicht für sehr Tiefe Rekur
 
 \begin{center}
     \hspace*{-3cm}\includegraphics[width=1.4\textwidth]{./diagramme/matplotlib/zufallszahlen.png}
+    Abb. 4
 \end{center}
+
+Zuerst beschäftigte ich mich damit, möglichst schnell die Liste von Zufallszahlen zu generieren.
+Die nicht optimierten Version, die reine "list comprehensions" nutzen schneiden erwartungsgemäß schlecht ab
+und sind deutlich langsamer als andere Varianten. Die "numba" nutzende Version ist ca. 5x schneller,
+was darauf zurückzuführen ist, dass der Ursprüngliche Python Code dem "numba" JIT-Compiler übergeben wird.
+JIT Compilation bedeutet, dass während des Ausführens des Programms Teile des Programms wie z. B. Funktionen
+vom JIT-Compiler in eine optimierte Form zur Ausführung übertragen werden. Dies kostet zwar Zeit, doch bei
+Funktionen, die häufig ausgeführt werden oder wenn die Optimierungen eine sehr große Zeitersparnis bringen.
+Der 2. Aspekt ist hier der Fall, obwohl die Kompilierung Zeit kostet, wird diese bei der Ausführung deutlich eingespart.
+Schneller sind nur die Funktion "numpy.random.randint, die ein "numpy array" mit Zufallszahlen erstellt,
+wobei hier auffällt, dass diese durch den JIT-Compiler nicht schneller wird, was damit zusammenhängt, dass die Kompilierung
+länger als die eigentliche Ausführung dauert. Die Erklärung dafür, dass diese Funktion der "numpy" Bibliothek
+so schnell ist, ist darin zu finden, dass diese in C geschrieben wurde und bereits kompiliert wurde. Dadurch wird
+das "numpy array" genau so schnell wie in C generiert. Diese fand ich durch betrachten des NumPy Github Repository heraus.
 
 \begin{center}
     \hspace*{-3cm}\includegraphics[width=1.4\textwidth]{./diagramme/matplotlib/pythonlangsam.png}
+    Abb. 5
 \end{center}
+
+Nachdem nun eine zu sortierende Liste vorhanden war, implementierte ich mehrere Versionen der Sortieralgorithmen.
+In Abbildung 5 sind die langsamen Versionen zu sehen, bei denen wenige Optimierungen vorgenommen wurden, oder wo diese nichts bewirkten.
+Ausgehend von der Implementation mit normalen Python Listen reduzierte sich die Ausführdauer von ca. 40 auf 14 Sekunden
+durch die Nutzung von statischer Typisierung und Kompilierung mit Cython. Das hinzufügen weiteres Optmierungen
+bei Cython ('all optmizations') hatte in diesem Fall dann allerdings keine Auswirkungen mehr.
+Zu erklären ist die um 281\% höhere Geschwindigkeit damit, dass der Cython Code vom Cython Compiler
+entsprechend Kompiliert werden kann und die in Cython implementierten Funktionen somit bereits besser
+Optimiert sind bei ihrer Ausführung als normaler Python Code, der mühsam vom Python-Interpreter eingelesen
+und verarbeitet werden muss, was mehr Zeit kostet.
+Überraschend war für mich, dass das Nutzen von den scheinbar schnelleren 'numpy arrays' und das Kompilieren
+von reinem Python Code mit Cython für eine Verschlechterung sorgten, was ich mir dadurch erklärte, dass einige
+Python Funktionen auf normale Listen besser funktionieren als auf 'numpy arrays', da sich diese in ihrer Funktionsweise
+unterscheiden. Warum die Cython Version langsamer ist konnte ich mir noch nicht erklären, wobei es vielleicht an meinem
+noch nicht tiefgreifend genug gehenden Verständnis von Cython liegen könnte.
 
 \begin{center}
     \hspace*{-3cm}\includegraphics[width=1.4\textwidth]{./diagramme/matplotlib/pythonschnell.png}
+    Abb. 6
 \end{center}
+
+Deutlich erfolgreicher und einfacher war die Implementierung mit 'numba' und 'numpy'.
+Es zeigte sich, dass das anwenden von JIT-Kompilierung in Form von 1er Zeile Code
+eine Reduzierung auf $\approx$ 9 und $\approx$ 2 Sekunden bewirkt. Diese hohe Effektivität von JIT
+ist aufgrund dessen, dass die Quicksort Funktion sich häufig Rekursiv aufruft, und so bei jedem Aufruf
+Zeit eingespart wird, was sich dann aufsummiert zu einer hohen Zeitersparnis.
+Außerdem fällt auf, dass die standardmäßig in Python implementierte 'sort()' Methode der Listen
+am besten abschneidet. Diese ist nämlich, wie die NumPy Funktionen und alle built-in Python Funktionen, in C geschrieben und
+somit sehr schnell. Mit der Kombination der in C geschriebenen Funktionen erreicht man so eine Zeit von 0.9 Sekunden.
 
 \begin{center}
     \hspace*{-3cm}\includegraphics[width=1.4\textwidth]{./diagramme/matplotlib/cpp.png}
+    Abb. 7
 \end{center}
+
+Bei meiner Implementation des Quicksort Algorithmus in C++ und dem Testen der standardmäßigen Sortierfunktion
+viel mir auf, dass diese nahezu gleich schnell waren wie die schnellste Python implementierung.
+Daraus schloss ich, dass kaum ein Unterschied bestand zwischen dem, was der Computer bei meinem C++ Code und beim schnellsten Python Code machte.
+Die genutzten Python Funktionen waren ja schließlich auch in C geschrieben. Diese Vermutung bestätigte ich, indem
+ich meine in C++ Quicksort nach C umschrieb und mit dem Modul CTypes aus Python heraus aufrief und damit ähnliche Geschwindigkeiten
+erreichte. Es zeigt sich, dass die Geschwindigkeit von Python Code stark davon abhängt, ob Funktionen in C geschrieben wurden,
+die man nur noch aufrufen muss, oder ob Funktionen in Python ausgeführt werden müssen.
+Abschließend gelang es mir noch, einige weitere Techniken der Optmierung in C++ zu entdecken und umzusetzen.
+Meine Ursprüngliche Implementation der RadixSort, einem Sortierverfahren der Komplexität $n \cdot w$ , was theoretisch deutlich schneller ist als die Quicksort
+mit einer Komplexität von $n \cdot log_{n}$, stellte sich als langsamer als die Versionen  der Quicksort in Python und C++ heraus.
+
 
 \begin{center}
     \hspace*{-3cm}\includegraphics[width=1.4\textwidth]{./diagramme/matplotlib/comparison.png}
+    Abb. 8
 \end{center}
 
-Zufallszahlengenerierung
-
-Langsam
-
-NumPy numba
-
-c++, ctypes
-
-Vergleich der Sprachen
+Neben C++ und Python interessierte mich auch, wie schnell das Sortieren mit einer Implementation der Quicksort 
+in anderen Sprachen möglich ist. Dazu testete ich 3 interpretierte Sprachen, nämlich Lua, Javacript und Julia sowie die
+Kompilierten Sprachen Go und Java, wobei Java nur in Java-ByteCode Kompiliert wird, der dann von der JVM ausgeführt wird.
+Dabei stellte ich fest, dass Lua im Vergleich sehr langsam ist, doch die anderen interpretierten Sprachen ähnlich schnell zu Python waren.
+Dies lässt sich dadurch erklären, dass die V8, also der Javascript Interpreter, im Gegensatz zum Python-Interpreter,
+mehr Optimierungen vornimmt, so z. B. ohne Arbeit des Entwicklers direkt JIT-Compilation. Bei Julia hingegen hatte ich diese
+schnelle Ausführung erwartet, da die Sprache für wissenschaftliche Berechnungen konzipiert ist. Obwohl man Julia Programme nicht selbst kompilieren kann,
+so werden diese meist von der Julia Runtime vor der Ausführung kompiliert und optmiert, was zu dieser Performance führt.
+Die Testergebnisse der beiden Kompilierten Sprachen Java und Go sind leider nicht so aufschlussreich.
+Bei Go hatte ich Probleme bei der Implementierung und durch die Unmöglichkeit, in Go eine echte, rekursive Quicksort mit 10 Millionen Zahlen
+zu implementieren ist dass Ergebnis nur Schätzbar. Ich würde die Geschwindigkeit ähnlich der wie Julia einschätzen, da 3 Millionen Zahlen weniger sortiert wurden.
+Bei Java scheint sich auf den ersten Blick einer eher mäßige Performance abzuzeichnen, doch sollte man im Hinterkopf behalten,
+dass ich sehr wenig Erfahrung mit Java habe, weshalb eine Implementation in Java möglicherweise schneller sein könnte.
+Insgesamt zeigt sich, dass die Interpreter für Python und Lua nicht so gut optimiert sind, wobei man beachten muss, dass Projekte wie NumPy und Numba sowie LuaJIT,
+die Geschwindigkeit dieser deutlich erhöhen können.
 
 \clearpage
 \section{Diskussion}
