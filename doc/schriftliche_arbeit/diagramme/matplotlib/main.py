@@ -6,14 +6,14 @@ data = [
     # data comparison
     [
         [
-            "go quicksort(7 Mil.)",
-            "lua quicksort",
-            "lua table.sort",
-            "java Collection.sort()",
-            "javascript quicksort",
-            "java quicksort",
-            "julia custom/built-in",
-            "javascript standard sort"
+            "go\n quicksort(7 Mil.)",
+            "lua\n quicksort",
+            "lua\n table.sort",
+            "java\n Collection.sort()",
+            "javascript\n quicksort",
+            "java\n quicksort",
+            "julia\n custom/built-in",
+            "javascript\n standard sort"
         ],
         [
             0.919,
@@ -30,13 +30,13 @@ data = [
     # cpp, radixsort
     [
         [
-            "C++ radixsort",
-            "ctypes cast to c-like array",
-            "C++ quicksort",
-            "C quicksort with ctypes",
-            "C++ std::sort",
-            "C++ terdiman radixsort",
-            "C++ terdiman AVX2"
+            "C++\n radixsort",
+            "ctypes cast\n to c-like array",
+            "C++\n quicksort",
+            "C quicksort\n with ctypes",
+            "C++\n std::sort",
+            "C++ terdiman\n radixsort",
+            "C++ terdiman\n AVX2"
         ],
         [
             2.269,
@@ -52,11 +52,11 @@ data = [
     # slow
     [
         [
-            "quicksort numpy array",
-            "cython quicksort",
-            "quicksort python list",
-            "cython quicksort all optimizations",
-            "cython quicksort with types"
+            "quicksort\n numpy array",
+            "cython\n quicksort",
+            "quicksort\n python list",
+            "cython quicksort\n all optimizations",
+            "cython quicksort\n with types"
         ],
         [
             72.231,
@@ -70,10 +70,10 @@ data = [
     # numba, numpy
     [
         [
-            "quicksort numba numba.typed list",
-            "list.sort() python list",
-            "quicksort numba numpy array",
-            "list.sort() numpy array"
+            "quicksort numba\n numba.typed list",
+            "list.sort()\n python list",
+            "quicksort numba\n numpy array",
+            "list.sort()\n numpy array"
         ],
         [
             9.744,
@@ -86,10 +86,10 @@ data = [
     # list generation
     [
         [
-            "comprehension to numba.typed list",
-            "list comprehension",
-            "list comprehension numba",
-            "numpy.random.randint numba",
+            "comprehension to\n numba.typed list",
+            "list\n comprehension",
+            "list\n comprehension numba",
+            "numpy.random.randint\n numba",
             "numpy.random.randint",
         ],
         [
@@ -104,7 +104,8 @@ data = [
 ]
 
 # set font size
-plt.rc('font', size=12)
+plt.rc('font', size=16)
+plt.rc('text', usetex=True)
 
 for i in data:
 
@@ -113,8 +114,8 @@ for i in data:
     # create plot
     plt.bar(i[0], i[1], color ='blue', width = 0.4)
     # name the axis and give title
-    plt.xlabel("Variations")
-    plt.ylabel("Zeit in Sekunden für 10 Millionen Elemente")
+    plt.xlabel(r'\textbf{Variations}')
+    plt.ylabel(r'\textbf{Zeit in Sekunden für 10 Millionen Elemente}')
     plt.title(i[2])
     # show
     plt.show()
