@@ -33,3 +33,5 @@
 comparison/go/quicksort
 # java output
 **/*.class
+# looking into code
+/libsources

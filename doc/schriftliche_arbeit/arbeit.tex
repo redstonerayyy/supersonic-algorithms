@@ -218,16 +218,16 @@ zu machen, damit es durch variierende Prozessorauslastung keine Verfälschungen 
     
     \begin{center}
         \includegraphics[width=.5\textwidth]{screenshots/pythontimer.png}
-        Abb. 1
+        Abb. 1 Timer Klasse
     \end{center}
     
     \columnbreak
     
     \begin{center}
         \includegraphics[width=.5\textwidth]{screenshots/timerexample.png}
-        Abb. 2
+        Abb. 2 Nutzungsbeispiel
         \includegraphics[width=.5\textwidth]{screenshots/outputexample.png}
-        Abb. 3
+        Abb. 3 Beispielausgabe
     \end{center}
     
 \end{multicols}
@@ -255,7 +255,7 @@ nach von der Implementation von Recursion in Go, die nicht für sehr Tiefe Rekur
 
 \begin{center}
     \hspace*{-1.5cm}\includegraphics[width=1.2\textwidth]{./diagramme/matplotlib/zufallszahlen.png}
-    Abb. 4
+    Abb. 4 Zufallszahlengenerierung
 \end{center}
 
 Zuerst beschäftigte ich mich damit, möglichst schnell die Liste von Zufallszahlen zu generieren.
@@ -273,11 +273,11 @@ so schnell ist, ist darin zu finden, dass diese in C geschrieben wurde und berei
 das "numpy array" genau so schnell wie in C generiert. Diese fand ich durch betrachten des NumPy Github Repository heraus.
 
 
-\subsection{Python langsam}
+\subsection{Langsame Implementatin in Python/Cython}
 
 \begin{center}
     \hspace*{-1.5cm}\includegraphics[width=1.2\textwidth]{./diagramme/matplotlib/pythonlangsam.png}
-    Abb. 5
+    Abb. 5 Schlechte Performance
 \end{center}
 
 Nachdem nun eine zu sortierende Liste vorhanden war, implementierte ich mehrere Versionen der Sortieralgorithmen.
@@ -296,11 +296,11 @@ unterscheiden. Warum die Cython Version langsamer ist konnte ich mir noch nicht 
 noch nicht tiefgreifend genug gehenden Verständnis von Cython liegen könnte oder daran, dass es etwas Zeit kostet,
 die mit Cython kompilierten Funktionen aufzurufen
 
-\subsection{Python schnell}
+\subsection{Schnelle Implementationen mit NumPy und Numba}
 
 \begin{center}
     \hspace*{-1.5cm}\includegraphics[width=1.2\textwidth]{./diagramme/matplotlib/pythonschnell.png}
-    Abb. 6
+    Abb. 6 Schnelle Programme
 \end{center}
 
 Deutlich erfolgreicher und einfacher war die Implementierung mit 'numba' und 'numpy'.
@@ -312,11 +312,11 @@ Außerdem fällt auf, dass die standardmäßig in Python implementierte 'sort()'
 am besten abschneidet. Diese ist nämlich, wie die NumPy Funktionen und alle built-in Python Funktionen, in C geschrieben und
 somit sehr schnell. Mit der Kombination der in C geschriebenen Funktionen erreicht man so eine Zeit von 0.9 Sekunden.
 
-\subsection{C++ und CTypes, Radixsort}
+\subsection{C++, CTypes und Radixsort}
 
 \begin{center}
     \hspace*{-1.5cm}\includegraphics[width=1.2\textwidth]{./diagramme/matplotlib/cpp.png}
-    Abb. 7
+    Abb. 7 C/C++ Implementationen
 \end{center}
 
 Bei meiner Implementation des Quicksort Algorithmus in C++ und dem Testen der standardmäßigen Sortierfunktion
@@ -334,18 +334,16 @@ aufgezeigt wurden. Ich konnte so eine sehr zentrale, ursprünglich komplexe und 
 und so die Geschwindigkeit um das 20-fache erhöhen von $\approx$ 2.2 auf $\approx$ 0.24 Sekunden \cite{terdiman}.
 Diese Operation konnte ich nun in einem Teil meines Programs noch weiter verbessern und so die Ausführung dieses Programteils
 um insgesamt 5ms reduzieren, nachdem ich durch eine weitere Publikation auf die Idee gebracht wurde, den erweiterten Befehlssatz namens
-AVX2 zu nutzen \cite{michael}. Wie genau dies passierte, werde ich später genauer beschreiben.
-
-  \cite{intelavxdocs} 
-
-
+AVX2 zu nutzen \cite{michael}. Wie genau genau ich diesen nutzte, werde ich bei der Diskussion weiter ausführen.
 
 \subsection{Sprachenvergleich}
 
 \begin{center}
     \hspace*{-1.5cm}\includegraphics[width=1.2\textwidth]{./diagramme/matplotlib/comparison.png}
-    Abb. 8
+    Abb. 8 Großer Sprachenvergleich
 \end{center}
+
+\clearpage
 
 Neben C++ und Python interessierte mich auch, wie schnell das Sortieren mit einer Implementation der Quicksort 
 in anderen Sprachen möglich ist. Dazu testete ich 3 interpretierte Sprachen, nämlich Lua, Javacript und Julia sowie die
@@ -365,8 +363,92 @@ die Geschwindigkeit dieser deutlich erhöhen können.
 
 \clearpage
 \section{Diskussion}
+
+Wie genau erklären sich diese großen Unterschiede in der Performance zwischen den Sprachen und vorallem innerhalb Python allein?
+Warum sind C und C++ so schnell und was genau sind denn jetzt die Unterschiede zwischen Kompilierung und Interpretation bei Programmiersprachen.
+
+Beim Python Interpreter, welcher in C programmiert wurde, gibt es grob gesagt 2 Arten, wie Code ausgeführt werden wird und
+wie die Daten manipuliert werden. Normalerweise wird der Python Code vom Python Interpreter bei der Ausführung eingelesen und analysiert,
+um die nötigen Operation aus dem Code herauszulesen und diese dann auszuführen. Dies geschieht bei Python zur Laufzeit und läuft so ab,
+dass mit dem Befehl 'python <pythondata>' der Interpreter mit einer Input Datei aufgerufen wird. Der Vorteil dabei ist, dass keine Kompilierung nötig ist,
+doch deswegen gibt es meist Performance einbußen. Die andere Art der Code Ausführung ist die von nativ kompilierten C Funktionen,
+die im Python Interpreter eingebaut sind und innerhalb von Python aufgerufen werden können. So wird die Ausführung dann von
+bereits vorher Kompilierten, stark Optimierten C Funktionen übernommen, was zu hohen Geschwindigkeiten und mehr Effizienz führt.
+Dieses Verhalten erschloß ich mir bei der Ausführung meines Codes und durch mein Vorwissen in diesem Bereich. Beweisen lässt sich
+dies auch durch einen schnellen Blick in den Quellcode des Python Interpreters, wo sich die Implementation der 'sort' Methode für Listen
+finden lässt (in Objects/listobject.c, Line 2220) \cite{pythonsource}. Dies erklärt dann auch, wieso die normale Sortierfunktion in Python so gut abschnitt.
+C und C++ hingegen basieren auf dem Konzept der 'Ahead of Time' Kompilierung, also vor ausführen des Programms.
+Aufgrunddessen besteht zur Analyse des Quellcodes mehr Zeit und es können vom Compiler automatisch Optiemierungen vorgenommen werden.
+Zusätzlich bestehen nach der Kompilierung alle Funktionen auf Assembler Befehlen bzw. Prozessorbefehlen und können somit 
+also direkt vom Prozessor ausgeführt ohne den Schritt der in Python nötigen Interpretation.
+Ein weiterer Grund, warum Kompilierung schneller ist, ist der Fakt, dass dabei dass Programm genau auf den Prozessor zugeschnitten
+werden kann. So können je nach Prozessor die besten Befehle ausgewählt werden. In Python hingegen ist dies nicht möglich,
+da Programme bei der Ausführung im Textformat vorliegen müssen und die Ausführung generalisiert wurde, was im Gegenzug den Vorteil bringt,
+dass einmal geschriebener Code von verschiedenen Python Interpretern auf gänzlich Verschiedenen Systemen, also z. B. unter Windows und Linux,
+ausgeführt werden kann, ohne dass Änderungen nötig sind.
+Eine in Python nicht mögliche Optimierung für C++ ist z. B. AVX2, eine Möglichkeit, besondere Assemblerfehle
+zu nutzen, die auf der Nutzung spezielle Hardware basieren, die in modernen CPUs verbaut ist 
+
+
+\subsection{AVX2 Beispielcode}
+
+\begin{center}
+    \includegraphics[width=1\textwidth]{./diagramme/bilder/avxcode.png}
+    Abb. 9 Komplexer C++ Code mit AVX2
+\end{center}
+
+\clearpage
+
+Dieser auf den ersten, und auch auf den Zweiten Blick, komplex aussehende Aussschnitt von C++
+zeigt meine Verwendung von AVX2 zur bereits angesprochen Reduktion der Ausführung um 5 Milisekunden.
+Es besteht ein starker Unterschied zu den meisten Programmen in Python, die deutlich einfacher
+zu schreiben und zu verstehen sind, doch ich hoffe, dass zumindest einige dies Nachvollziehen können 
+(wer will, kann diesen Abschnitt überspringen).
+
+\subsection{Erklärung AVX2 Beispielcode}
+
+Einfach gesagt, teilt dieser C++ Code einen aus 32-Bit bestehenden, positiven Integer in 4 Teile auf und addiert
+zu jedem dieser Teile einen Wert. Es werden dabei pro Schleifendurchlauf 4 Integer auf einmal geteilt, doch zum Verständnis reicht es,
+den Prozess an einem Integer darzustellen.
+
+\begin{center}
+    \includegraphics[width=1\textwidth]{./diagramme/matplotlib/avx2explanationfull.png}
+    Abb. 10 Veranschaulichung AVX2 Integer Operationen
+\end{center}
+
+In Abbildung 10 ist der zu teilende Integer 252117761, der dort auch in Binärer Form in der 1. Zeile
+dargestellt wird. Zusätzlich gibt es vor diesem noch 32 Null-Bits. Im ersten Schritt werden nun die 4
+Paare aus jeweils 8 Nullen oder Einsen, also jeweils 1 Byte, an eine andere Position der insgesamt 64-Bit bzw. 8
+Bytes verschoben. Anschließend werden diese Bits, die man nun als 4 16-Bit sehen sollte (Spanne der grauen Markierung),
+mit jeweils 4 anderen 16-Bit Integern addiert. Als ergebnis hat man nun 4 16-Bit Integer, die
+jeweils einer Position in dem 1024 Stellen langen Array entsprechen. An diesen stellen wird nun der Zähler
+um 1 erhöht.
+
 \clearpage
 \section{Zusammenfassung}
+
+Während meinem Projekt fand ich heraus, dass die besten Möglichkeiten zur Optimierung in Python darin bestehen,
+Numba und NumPy zu nutzen und dass Cython nicht ganz mit den möglichen Performancesteigerungen der beiden Bibliotheken mithalten kann.
+Außerdem stellte ich fest, wie stark Python zur Ausführung schneller Programme auf C Code aufbaut und wie stark dass Zusammenspiel dieser
+beiden Sprachen ist.
+Bei meinen Abenteuern mit C++ musste ich dann erfahren, dass durch schlechte Implementierung eines eigentlich überlegenen Algorithmus sich die
+Performance auch deutlich verschlechtern, wobe ich gleichzeitig auch sah, wie durch Korrekte Implementation sich die Geschwindigkeit drastisch
+erhöhen kann. Schlussendlich schaffte ich es auch, komplexe Optimierungen wie AVX2 zu nutzen, um noch das letzte Quäntchen Performance zu gewinnen.
+Insgesamt würde ich sagen, dass es mir gelungen ist, herauszufinden, wie sich schneller Code schreiben lässt und worauf man achten soll.
+Auch lernte ich viel über die zugrunde liegenden Konzepte.
+Besonders Mindblowing finde ich die Erkenntnis, dass sehr viele Sprachen stark auf C und C++ Code aufbauen
+und die effizienten, in diesen Sprachen implementierten Algorithmen, Programme und Bibliotheken dass ganze System
+der Programmiersprachen stützen und somit auch indirekt unsere digitale Welt.
+Ein Beispiel dafür ist zum Beispiel dass hochaktuelle Thema Künstliche Intelligenz und Neuronale Netze.
+Dort ist die meist genutzte Sprache zwar Python, doch in diesem Fall ist Python, wie in vielen Fällen, nur
+eine Möglichkeit, ursprünglich in C/C++ geschriebenen Code aufzurufen und zu nutzen.
+
+\section{Schlusswort}
+
+Alle, die Performanten und Schnellen Code schreiben wollen, sollten sich über die Funktionsweise ihrer 
+Software und ihrer Bibliotheken genauestens informieren.
+Alle, die neue Algorithmen und komplexere Bibliotheken entwickeln wollten, sollten C/C++
+verwenden, aufgrund der erstklassigen Performance und der Einbindung in fast alle Sprachen.
 
 \clearpage
 

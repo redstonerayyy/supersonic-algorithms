@@ -9,3 +9,6 @@ for(std::uint64_t i = 0; i < vector.size(); ++i){
 	counters.at(256 * 2 + RADIXBYTE(vector.at(i), 2))++;
 	counters.at(256 * 3 + RADIXBYTE(vector.at(i), 3))++;
 }
+
+
+
