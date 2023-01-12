@@ -11,3 +11,5 @@ class Timer:
 		diff = time.time_ns() - Timer.timers[name]
 		diffseconds = diff / (10 ** 9) 
 		print(name, ":", round(diffseconds, 5), "Seconds")
+
+
