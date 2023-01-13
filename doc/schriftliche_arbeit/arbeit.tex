@@ -1,4 +1,4 @@
-\documentclass[11pt,a4paper]{article}
+\documentclass[10pt,a4paper]{article}
 
 % change to german
 \usepackage[german]{babel}
@@ -9,6 +9,9 @@
 
 % packages, images, math
 \usepackage{geometry, graphicx, amsmath, amsfonts, array, multicol, multirow}
+
+% bar charts
+\usepackage{bchart}
 
 % for bibliography
 \usepackage[
@@ -23,7 +26,7 @@
 \usepackage{setspace}
 
 % colors
-\usepackage[dvipsnames]{xcolor}
+\usepackage{xcolor}
 
 % for urls
 \usepackage[colorlinks=true, urlcolor=blue, citecolor=blue, linkcolor=black]{hyperref}
@@ -71,7 +74,7 @@
 \makeatother
 
 % set line spacing
-\setstretch{1.5}
+\setstretch{1.25}
 
 % document
 \begin{document}
@@ -105,6 +108,10 @@
 \end{tabular}
 
 \clearpage
+
+\begin{bchart}
+    \bcbar{1.4}
+\end{bchart}
 
 \section*{Kurzfassung}
 
@@ -196,8 +203,6 @@ schriftlichen Arbeit. \newline
 Ich nutze dabei diese Software in der jeweiligen Version:
 
 \begin{itemize}
-    \item Visual Studio Code (Editor für Code)
-    \item \LaTeX (Erstellen der Dokumentation)
     \item clang++ 14.0.6 (C/C++ Compiler)
     \item python 3.10.8 (Ausführen der Dateien)
     \item java 19.0.1 openjdk (Javac, JVM)
@@ -222,23 +227,25 @@ So hatten alle Programme die gleiche Aufgabe zu lösen, wodurch Vergleichbarkeit
 Wichtig war auch, die finalen Tests direkt nach einem Neustart des PCs ohne andere laufende Programme
 zu machen, damit es durch variierende Prozessorauslastung keine Verfälschungen gab. 
 
-\begin{multicols}{2}
+% \begin{multicols}{2}
     
-    \begin{center}
-        \includegraphics[width=.5\textwidth]{screenshots/pythontimerlight.png}
-        Abb. 1 Timer Klasse
-    \end{center}
+% \end{multicols}
+
+\begin{center}
+    \includegraphics[width=0.75\textwidth]{screenshots/pythontimerlight.png}
     
-    \columnbreak
+    Abb. 1 Timer Klasse
+\end{center}
+
+\begin{center}
+    \includegraphics[width=.75\textwidth]{screenshots/timerexamplelight.png}
     
-    \begin{center}
-        \includegraphics[width=.5\textwidth]{screenshots/timerexamplelight.png}
-        Abb. 2 Nutzungsbeispiel
-        \includegraphics[width=.5\textwidth]{screenshots/outputexamplelight.png}
-        Abb. 3 Beispielausgabe
-    \end{center}
+    Abb. 2 Nutzungsbeispiel
     
-\end{multicols}
+    \includegraphics[width=.75\textwidth]{screenshots/outputexamplelight.png}
+
+    Abb. 3 Beispielausgabe
+\end{center}
 
 \subsection{Schwierigkeiten}
 
