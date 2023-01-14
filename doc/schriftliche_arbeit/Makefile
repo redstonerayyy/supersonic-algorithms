@@ -10,3 +10,4 @@ clean:
 	rm -rf ./*.bcf
 	rm -rf ./*.blg
 	rm -rf ./*.bbl
+	rm -rf ./*.xdv

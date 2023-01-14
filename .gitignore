@@ -24,6 +24,7 @@
 /**/*.xml
 /**/*.bbl
 /**/*.blg
+/**/*.xdv
 # intellij
 /**/cmake-build-debug
 /cmake-build-debug
