@@ -64,7 +64,7 @@
 % document
 \begin{document}
 
-\addtocounter{page}{-1}
+\addtocounter{page}{-2}
 
 % deckblatt
 
@@ -78,28 +78,30 @@
 
 \large\begin{tabular}{l p{12cm}}
 
-    Projektbetreuerin: & Birgit Ziegenmeyer                                                    \\
+    Projektbetreuerin: & Birgit Ziegenmeyer                                                  \\
 
-    Institution:       & Schillerschule Hannover                                               \\
+    Institution:       & Schillerschule Hannover                                             \\
 
     Thema des Projektes:
-                       & Implementationen von Algorithmen in verschiedenen Programmiersprachen
+                       & Implementation von Algorithmen in verschiedenen Programmiersprachen
     und Analyse dieser in Bezug auf die besten Techniken zur Optimierung,
-    um die Umsetzung hochperformanter und effizienter Programme zu erforschen.                 \\
+    um die Umsetzung hochperformanter und effizienter Programme zu erforschen.               \\
 
-    Fachgebiet:        & Mathematik/Informatik                                                 \\
+    Fachgebiet:        & Mathematik/Informatik                                               \\
 
-    Wettbewerbssparte: & Jugend Forscht                                                        \\
+    Wettbewerbssparte: & Jugend forscht                                                      \\
 
-    Bundesland:        & Niedersachsen                                                         \\
+    Bundesland:        & Niedersachsen                                                       \\
 
-    Wettbewerbsjahr:   & 2023                                                                  \\
+    Wettbewerbsjahr:   & 2023                                                                \\
 \end{tabular}
 
 
 \clearpage
 
 % kurzfassung
+
+\thispagestyle{empty}
 
 \section*{Kurzfassung}
 
@@ -108,9 +110,9 @@ die Implementation von Algorithmen optimieren lässt.
 Relevanz hat die Optimierung der Implementation, weil sich durch effiziente Programme Zeit, Geld
 und z. B. in Rechenzentren auch Strom sparen lässt.
 Einen besonderen Fokus legte ich dabei auf die Sprache Python im Vergleich mit C/C++.
-Meine Erwartung war, das Python deutlich langsamer sein würde als C/C++,
-was auch der Meinung des Internets entsprach.
-Ich nutzte den Sortieralgorithmus Quicksort als Beispiel und implementierte viele optimierte Versionen dieser
+Meine Erwartung war, das Python Implementationen deutlich langsamer sein würden als C/C++,
+was sich mit Aussagen auf Programmier-Foren deckte, die ich mir angeschaut hatte.
+Ich nutzte den Sortieralgorithmus Quicksort als Beispiel und implementierte viele optimierte Versionen
 in Python unter Nutzung der Bibliotheken NumPy, Numba, Cython und CTypes.
 Nach Messung der Ausführungszeit konnte ich feststellen, dass Python mit NumPy und Numba
 so schnell wie C++ werden kann.
@@ -134,20 +136,20 @@ und Strom z. B. in Rechenzentren gespart werden können.
 Es ging ausdrücklich nicht darum, verschiedene Algorithmen auf theoretischer Ebene
 miteinander zu vergleichen, da dies bereits zu Genüge gemacht wurde \cite{sortieralgorithmenwikipedia}.
 Die Idee entstand dadurch, dass ich im Herbst 2022 im Informatikunterricht
-Sortieralgorithmen wie die von Hoare entwickelte Quicksort kennenlernte \cite{quicksortwikipedia}.
-Ich stellte mir die Frage, wie man eine Liste von 10 Millionen zufällig generierten positiven Integern
-am schnellsten sortieren kann. Da algorithmisch bei der Quicksort keine Verbesserung möglich schien,
+Sortieralgorithmen wie den von Hoare entwickelten Quicksort-Algorithmus kennenlernte \cite{quicksortwikipedia}.
+Ich stellte mir die Frage, wie man eine Liste von 10 Millionen zufällig generierten positiven Ganzzahlen
+am schnellsten sortieren kann. Da algorithmisch bei Quicksort keine Verbesserung möglich schien,
 kam ich so auf das Thema, die Ausführung möglichst zu beschleunigen, indem ich mich mit
 Implementationsoptimierungen beschäftigte. Dabei wollte ich auch ergründen, wodurch sich Unterschiede
 in der Performance zwischen Programmiersprachen erklären lassen. Meine Hypothese war dabei,
 dass C/C++ deutlich schneller als andere Sprachen wie z. B. Python sein würde und dass
 ich in Python die Performance nicht so stark optimieren kann.  Als Programmierer bemühte ich
-nun das Internet und fand 4 Quellen, die C/C++ als 10x bis 100x mal schneller beschrieben,
+nun das Internet und fand vier Quellen, die C/C++ als 10x bis 100x mal schneller beschrieben,
 was sich mit meiner Vermutung deckte \cite{pyengineeringvscpp} \cite{quorepythonvscpp}
 \cite{stopythonvscpp}.
-Auch fand ich einige Artikel von eifrigen Programmierern, die bereits Dinge zur Optimierung
-unternommen hatten. Ich wurde so zur Nutzung von Cython, CTypes, Numba und NumPy bewegt,
-wovon die letzteren beiden mit bereits bekannt waren \cite{cythonctypes}.
+Auch fand ich einige Artikel von eifrigen Programmierern, die sich mit der Optimierung
+von Python beschäftigten. Ich wurde so zur Nutzung von Cython, CTypes, Numba und NumPy bewegt,
+wovon die letzteren beiden mir bereits bekannt waren \cite{cythonctypes}.
 Meine Internetsuche nach den besten Optimierungen für Python ergab nur Tipps, aber keine
 guten Vergleiche der Geschwindigkeit, weshalb ich entschied, dass ein Vergleich der
 Optimierungsmöglichkeiten sinnvoll sein könnte.
@@ -156,9 +158,9 @@ Optimierungsmöglichkeiten sinnvoll sein könnte.
 \section{Materialien, Vorgehen, Methode}
 
 \subsection{Materialien}
-Für mein Projekt nutze ich meinen Desktop PC (Linux) zum Implementieren und Ausführen der Programme.
-In diesem verbaut sind eine Ryzen 7 2700 und 16 GB Ram. Außerdem nutzte ich mehrere Programme.
-Bis auf Visual Studio Code (Implementierung der Programme) und \LaTeX (Erstellen der schriftlichen Arbeit)
+Für mein Projekt nutzte ich meinen Desktop PC (Linux) zum Implementieren und Ausführen der Programme.
+In diesem verbaut sind als CPU der Ryzen 7 2700 und 16 GB Arbeitsspeicher. Außerdem nutzte ich mehrere Programme.
+Neben Visual Studio Code (Implementierung der Programme) und \LaTeX (Erstellen der schriftlichen Arbeit)
 waren dies die Compiler oder Interpreter zum Ausführen der verschiedenen Programmiersprachen.
 Diese Programme waren (mit Versionsangabe) Clang++ 14.0.6 (C/C++ Compiler), Python 3.10.8 (Ausführen von Python Programmen),
 Java 19.0.1 (Kompilieren und Ausführen von Java), Lua 5.4.4 (Ausführen von Lua Programmen),
@@ -168,7 +170,7 @@ und Go 1.19.4 (Go Compiler).
 \subsection{Vorgehen und Methode}
 
 Mein Vorgehen war für alle getesteten Programmiersprachen ähnlich.
-Zuerst generierte ich in der jeweiligen Sprache eine unsortierte Liste bzw. Array mit 10 Millionen Pseudo-Zufallszahlen,
+Zuerst generierte ich in der jeweiligen Sprache eine unsortierte Liste bzw. ein Array mit 10 Millionen Pseudo-Zufallszahlen,
 die anschließend von einer Quicksort Implementation in dieser Sprache aufsteigend sortiert wurden.
 Da jede Sprache über Möglichkeiten der Zeitnahme verfügt, konnte ich so die zur Sortierung benötigte Zeit
 ermitteln. In Python implementierte ich dazu eine Timer-Klasse
@@ -199,25 +201,24 @@ Manier, durch das Nutzen einer nicht auflistbaren Anzahl an Online-Ressourcen un
 durch das Lesen der Dokumentationen informierte \cite{cythondocs} \cite{cythondocsnumpy} \cite{cythonctypes}.
 Eine Schwierigkeit dabei war, dass ich kaum Erfahrung mit diesen Python-Bibliotheken hatte.
 In Python entwickelte ich dann eine Vielzahl an verschiedenen Funktionen zur Generierung von Zufallszahlen
-und implementierte auch viele verschiedene Versionen der Quicksort. Dabei kombinierte ich geschickt die
+und implementierte auch viele verschiedene Versionen von Quicksort. Dabei kombinierte ich die
 genannten Bibliotheken und Python Standard-Funktionen, um neue Variationen zu schaffen,
 die potenziell bessere Performance bieten.
-Ich probierte dabei einfach herum nach dem Prinzip \textit{Trial and Error} und schaute, was
+Ich probierte dabei einfach herum nach dem \textit{Trial and Error} Prinzip und schaute, was
 die Performance erhöhte.
 Meine Versionen waren somit Weiterführungen der Ansätze aus diesen Bibliotheken, aus denen ich
 verschiedene Optimierungsmöglichkeiten nutzte.
 Ein Beispiel sind die Bibliotheken Numba und NumPy. Beide brachten meinen Versionen einen
 Geschwindigkeitsboost, doch durch die Kombination beider wurde die Zeitersparnis noch größer.
-Jede dieser Versionen führte ich nun mehrmals aus und nahm eine der Zeiten, die der ungefähre
-Mittelwert dieser zu sein schien. So hatte ich nun für jede Version eine Ausführungsdauer.
-Diese ist zwar keine arithmetischer Mittelwert, aber ausreichend genug zum Vergleichen
-der Implementationen. Wichtig dabei war, alle Tests auf dem gleichen Computer zu machen,
+Jede dieser Versionen führte ich nun mehrmals aus und nahm die beste Zeit.
+So hatte ich nun für jede Version eine Ausführungsdauer.
+Wichtig dabei war, alle Tests auf dem gleichen Computer zu machen,
 da sich bei unterschiedlicher Hardware
 die Ergebnisse unterscheiden. Diese wären sonst nicht vergleichbar gewesen.
-Am Ende des Projektes implementierte ich außerdem noch eine Radixsort in C++ mithilfe
-einiger Internetquellen \cite{terdiman} \cite{michael} \cite{intelavxdocs} \cite{avxguide}.
-Dies tat ich, um herauszufinden, was die allerschnellste Möglichkeit zur Sortierung von 10 Millionen
-Zahlen ist. Dabei muss gesagt sein, dass die Radixsort ein anderer
+Am Ende des Projektes implementierte ich außerdem noch den Radixsort-Sortieralgorithmus in C++ mithilfe
+einiger Internetquellen um herauszufinden, was die schnellste Möglichkeit zur Sortierung von 10 Millionen
+Zahlen ist \cite{terdiman} \cite{michael} \cite{intelavxdocs} \cite{avxguide}.
+Dabei muss gesagt sein, dass Radixsort ein anderer
 Algorithmus ist und somit nicht mit den anderen Programmen mit Quicksort vergleichbar ist.
 
 \subsection{Schwierigkeiten}
@@ -250,16 +251,18 @@ Diese Grenze wurde ungünstigerweise dann erreicht, wodurch das Programm abstür
     \smallskip
     \bcbar[label=5, text=\hspace{2cm}NumPy np.random.randint]{0.051}
     \smallskip
-    \bcxlabel{\bf{Zeit in Sekunden}}
+    \bcxlabel{\bf{Ausführungszeit in Sekunden}}
 \end{bchart}
 
 \vspace{0.5cm}
 
+
 Wie im Vorgehen beschrieben generierte ich unsortierte Listen von Zufallszahlen,
 damit ich testen konnte, wie schnell meine Quicksort Implementationen diese
 sortierten. Die Version mit List Comprehensions in Python (2) dauerte relativ lange.
-Dies war ein Hindernis beim Entwickeln und Testen der eigentlichen Implementationen der
-Quicksort. Deshalb optimierte ich die Generierung mit Numba (3, 4) und NumPy (4, 5).
+Dies war ein Hindernis beim Entwickeln und Testen der eigentlichen Quicksort Implementationen,
+da so jeder Test des Programms während dem Entwickeln länger dauert.
+Deshalb optimierte ich die Generierung mit Numba (3, 4) und NumPy (4, 5).
 Es zeigte sich, dass alle 3 optimierten Versionen deutlich schneller waren.
 Dies entsprach meinen Erwartungen, dass die Bibliotheken mehr Performance bringen.
 Auffallend war dabei, dass die Kombination von NumPy und Numba langsamer war,
@@ -297,7 +300,7 @@ weshalb die Konvertierung nötig war.
     \smallskip
     \bcbar[label=12, text=\hspace{5cm}list.sort() mit NumPy Array]{0.894}
     \smallskip
-    \bcxlabel{\bf{Zeit in Sekunden}}
+    \bcxlabel{\bf{Ausführungszeit in Sekunden}}
 \end{bchart}
 
 In diesem Diagramm sind meine verschiedenen Versionen der Quicksort in Python,
@@ -329,10 +332,11 @@ Wichtig zu erwähnen zur Version mit CTypes (10) ist, dass die Konvertierung
 einer Python Liste in ein für C verständliches Format auch nochmal ca. 2 Sekunden
 Zeit kostete.
 Es zeigt sich, dass NumPy eine genauso schnelle Sortierung wie C++ ermöglicht.
-Dies überraschte mich sehr, weil es meiner Hypothese und der allgemeinen Meinung,
-die ich so warnahm, komplett widersprach.
-Ich fragte mich wie sich die Versionen 3 und 12 unterschieden.
-Was sorgt für diesen großen Unterschied an Performance?
+Dies überraschte mich sehr, weil es meiner Hypothese und den Foren-Beiträgen,
+die ich gelesen hatte, komplett widersprach.
+Ich fragte mich, wie sich die Versionen 3 und 12 unterschieden.
+Um mir diese Frage zu beantworten stellte ich einige Überlegungen an,
+die ich später diskutieren werde.
 
 \subsection{Quicksort Implementationen in weiteren Sprachen im Vergleich}
 
@@ -353,13 +357,14 @@ Was sorgt für diesen großen Unterschied an Performance?
     \smallskip
     \bcbar[label=8, text=\hspace{7cm}Quicksort Go (7 Millionen Zahlen)]{0.919}
     \smallskip
+    \bcxlabel{\bf{Ausführungszeit in Sekunden}}
 \end{bchart}
 
 Neben C++ und Python interessierte mich auch, wie schnell das Sortieren mit
 einer Implementation der Quicksort in anderen Sprachen möglich ist.
 Ich nahm dabei aufgrund meines limitierten Wissens in diesen Sprachen keine Optimierungen
-vor. Dies tat ich auch, weil mich interessierte, wie schnell die naivste
-Implementation der Quicksort in diesen ist.
+vor. Dies tat ich auch, weil mich interessierte, wie schnell die nativen
+Implementationen der Quicksort in diesen ist.
 Es fällt direkt auf, dass Lua (1, 2) sowohl mit der Quicksort als auch mit der
 standardmäßigen Sortierung im Vergleich sehr schlecht abschneidet.
 Darauf folgt die standardmäßige Sortierung in Java (3).
@@ -382,7 +387,7 @@ Meine Go-Variante lässt sich also nicht als schnellste Version bezeichnen.
     \smallskip
     \bcbar[label=3, text=\hspace{3cm}Radixsort mit Basis 256 (Bytesort) und AVX2]{0.240}
     \smallskip
-    \smallskip
+    \bcxlabel{\bf{Ausführungszeit in Sekunden}}
 \end{bchart}
 
 In den vorigen Teilen ging es um die Optimierung der Quicksort. Dieser Abschnitt
@@ -416,7 +421,7 @@ Zwischen den verschiedenen Implementationen gab es große Unterschiede in Bezug 
 Ausführungsgeschwindigkeit. Wie diese zustande kamen, will ich im Folgenden erklären.
 Dazu ist es wichtig, dass Konzept von interpretierten und kompilierten
 Programmiersprachen zu verstehen. Bei einer interpretierten Programmiersprache wie
-Python wird der Quellcode von einem Programm, dem Interpreter, zur Zeit der Ausführung verarbeitet.
+Python wird der Quellcode von einem speziellen Programm, dem Interpreter, zur Zeit der Ausführung verarbeitet.
 Dabei müssen viele Prüfungen durchgeführt werden, damit das Programm richtig ausgeführt werden kann.
 Bei kompilierten Sprachen hingegen werden alle Prüfungen vor dem Ausführen durchgeführt.
 Jeder Quellcode in diesen Sprachen muss vor der Ausführung kompiliert werden und in
@@ -424,8 +429,8 @@ Maschinensprache umgewandelt werden. Im Gegensatz zur Interpretation können dab
 mehr automatische Optimierungen vom Compiler vorgenommen werden.
 Deswegen sind kompilierte Sprachen generell nahezu immer schneller als interpretierte.
 Die Bibliotheken NumPy, CTypes, Numba und Cython basieren darauf, dass weniger Python-Quellcode
-interpretiert werden muss. Dies geschieht dadurch, dass diese Möglichkeiten bieten zur
-Nutzung von kompiliertem Code in Python.
+interpretiert werden muss. Dies geschieht dadurch, dass diese Möglichkeiten zur
+Nutzung von kompiliertem Code in Python bieten.
 Dabei geht jede Bibliothek unterschiedlich vor.
 NumPy, CTypes und Python-Standardfunktionen bieten Python Zugriff auf schnelle und
 bereits kompilierte C Funktionen.
@@ -455,15 +460,15 @@ Zugespitzt lässt sich sagen, dass Python eigentlich nur eine einfache Möglichk
 C/C++ zu nutzen. Um Python schneller zu machen, muss man möglichst aufhören, Python zu nutzen.
 Genauer meine ich damit, dass man Python nicht nutzen sollte, um komplexe Algorithmen zu implementieren,
 da wichtige Sprachkonstrukte wie Schleifen in reinem Python einfach zu langsam sind.
-Ich appelliere deswegen an alle Entwickler, sich bewusst zu werden, wie ihre Programmiersprachen
-funktionieren, damit Zeit, Geld und Strom gespart werden können.
+Deswegen denke ich, dass man sich als Entwickler bewusst werden sollte, wie die genutzten
+Programmiersprachen funktionieren, damit Zeit, Geld und Strom gespart werden können.
 
 
 \section{Reflexion und Ausblick}
 Obwohl sich meine Hypothese nicht bestätigte, konnte ich trotzdem viel lernen
 und neue Erkenntnisse sammeln. Insgesamt werte ich das Projekt als ein Erfolg.
-Ich verstehe nun die Funktionsweise von Python deutlich besser und habe auch Erfahrung
-mit \LaTeX sammeln können.
+Ich verstehe nun die Funktionsweise von Python und die Kombination von Python und C/c++
+deutlich besser.
 Rückblickend denke ich, dass ich bei meinen Ergebnissen bessere Möglichkeiten zum Testen
 hätte schaffen sollen. Ich hätte genauere Ergebnisse erhalten, wenn ich viele Testergebnisse zu einem
 Durchschnittswert kombiniert hätte.
@@ -473,6 +478,9 @@ Als Weiterführung für mein Projekt wäre denkbar herauszufinden, wieso kaum je
 schnellere Radixsort nutzt.
 Auch könnte man selbst einen Interpreter oder Compiler entwickeln, um noch genauer zu erforschen,
 wie sich diese unterscheiden.
+Interessant wäre auch, noch mehr Sprachen tiefergehend zu vergleichen oder
+zu testen, wie sich meine Implementationen auf unterschiedlicher Hardware und unterschiedlichen Betriebssystemen
+verhalten.
 
 \section{Schlusswort}
 Insgesamt lässt sich sagen, dass schneller Python Code auf C/C++ basiert.
