@@ -6,8 +6,15 @@
 \usepackage{bchart}
 \usepackage{tikz}
 \usepackage[german]{babel}
-\usepackage{svg}
 \usetikzlibrary{babel}
+
+% font to helvec
+\usepackage[scaled]{helvet}
+\usepackage[T1]{fontenc}
+
+% bigger font
+% \usepackage{extsizes}
+
 
 % custom theming
 % https://github.com/debjyoti385/tikzposter
@@ -42,6 +49,47 @@
     \colorlet{notefrcolor}{colorOne!00!white}
  }
 
+ % define block stzle
+ \defineblockstyle{Minimal}{
+    titlewidthscale=1, bodywidthscale=1, titleleft,
+    titleoffsetx=0pt, titleoffsety=0pt, bodyoffsetx=0pt, bodyoffsety=0pt,
+    bodyverticalshift=0pt, roundedcorners=0, linewidth=0.2cm,
+    titleinnersep=1cm, bodyinnersep=1cm
+}{
+    \begin{scope}[line width=\blocklinewidth, rounded corners=\blockroundedcorners]
+       \ifBlockHasTitle %
+           \draw[draw=none]%, fill=blockbodybgcolor]
+               (blockbody.south west) rectangle (blocktitle.north east);
+           \draw[color=blocktitlebgcolor, loosely dashed]
+               (blocktitle.south west) -- (blocktitle.south east);%
+       \else
+             \draw[draw=none]%, fill=blockbodybgcolor]
+                 (blockbody.south west) rectangle (blockbody.north east);
+        \fi
+    \end{scope}
+}
+
+% inner block style
+\defineinnerblockstyle{Default}{
+    titlewidthscale=1, bodywidthscale=1, titlecenter,
+    titleoffsetx=0pt, titleoffsety=0pt, bodyoffsetx=0pt, bodyoffsety=0pt,
+    bodyverticalshift=0pt, roundedcorners=20, linewidth=4pt,
+    titleinnersep=10pt, bodyinnersep=12pt
+}{
+    \begin{scope}[line width=\innerblocklinewidth, rounded
+      corners=\innerblockroundedcorners, solid]
+        \ifInnerblockHasTitle %
+           \draw[color=innerblocktitlebgcolor, fill=innerblocktitlebgcolor]
+           (innerblockbody.south west) rectangle (innerblocktitle.north east);
+           \draw[color=innerblocktitlebgcolor, fill=innerblockbodybgcolor]
+           (innerblockbody.south west) rectangle (innerblockbody.north east);
+        \else
+           \draw[color=innerblocktitlebgcolor, fill=innerblockbodybgcolor]
+           (innerblockbody.south west) rectangle (innerblockbody.north east);
+        \fi
+    \end{scope}
+}
+
  % define layout theme
 \definelayouttheme{PosterAnton}{
     \usecolorstyle{Rodenland}
@@ -71,9 +119,13 @@
 
 % content
 % \block{Quicksort Implementationen in Python mit verschiedenen Optimierungen und Vergleich mit C++}{}
-\begin{columns}
-    \column{0.34}
-    \block{test}{
+
+\block{Quicksort Implementationen in Python mit verschiedenen Optimierungen und Vergleich mit C++}{
+
+    \begin{columns}
+        \column{0.4}asdfasdf asdf as fasdf
+
+        \column{0.3}
         \begin{tikzfigure}[Test]
             \begin{bchart}[min=0, max=80, scale=4]
                 \bcbar[label=1, text=Quicksort mit NumPy Array]{72.231}
@@ -103,8 +155,8 @@
                 \bcxlabel{\bf{Ausführungszeit in Sekunden}}
             \end{bchart}
         \end{tikzfigure}
-    }
-\end{columns}
+    \end{columns}
+}
 
 
 
