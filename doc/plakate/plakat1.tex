@@ -1,0 +1,115 @@
+\documentclass[25pt, a0paper, portrait]{tikzposter}
+
+\usepackage{graphicx}
+\usepackage{fancyhdr}
+\usepackage{xcolor}
+\usepackage{bchart}
+\usepackage{tikz}
+\usepackage[german]{babel}
+\usepackage{svg}
+\usetikzlibrary{babel}
+
+% custom theming
+% https://github.com/debjyoti385/tikzposter
+
+% define colorstyle
+\definecolorstyle{Rodenland}{
+    % Define default colors
+    % PurpleGrayBlue
+    \definecolor{colorOne}{HTML}{AE0D45}
+    \definecolor{colorTwo}{HTML}{7F8897}
+    \definecolor{colorThree}{HTML}{C8512D}
+}{
+     % Background Colors
+    \colorlet{backgroundcolor}{white}
+    \colorlet{framecolor}{white}
+    % Title Colors
+    \colorlet{titlebgcolor}{colorOne}
+    \colorlet{titlefgcolor}{white}
+    % Block Colors
+    \colorlet{blocktitlebgcolor}{colorTwo}
+    \colorlet{blocktitlefgcolor}{colorOne}
+    \colorlet{blockbodybgcolor}{white}
+    \colorlet{blockbodyfgcolor}{black}
+    % Innerblock Colors
+    \colorlet{innerblocktitlebgcolor}{colorThree}
+    \colorlet{innerblocktitlefgcolor}{white}
+    \colorlet{innerblockbodybgcolor}{white}
+    \colorlet{innerblockbodyfgcolor}{black}
+    % Note colors
+    \colorlet{notefgcolor}{black}
+    \colorlet{notebgcolor}{colorOne!20!white}
+    \colorlet{notefrcolor}{colorOne!00!white}
+ }
+
+ % define layout theme
+\definelayouttheme{PosterAnton}{
+    \usecolorstyle{Rodenland}
+    \usebackgroundstyle{Default}
+    \usetitlestyle{Default}
+    \useblockstyle{Minimal}
+    \useinnerblockstyle{Default}
+    \usenotestyle{Default}
+}
+
+% Theme Simple
+\usetheme{PosterAnton}
+
+% change background color of poster
+\colorlet{backgroundcolor}{white}
+
+
+% main document
+% \subsection{Quicksort Implementationen in Python mit verschiedenen Optimierungen und Vergleich mit C++}
+\begin{document}
+
+% title
+\title{Supersonic Algorithms}
+\author{Anton Rodenwald (18), Schillerschule Hannover}
+
+\maketitle
+
+% content
+% \block{Quicksort Implementationen in Python mit verschiedenen Optimierungen und Vergleich mit C++}{}
+\begin{columns}
+    \column{0.34}
+    \block{test}{
+        \begin{tikzfigure}[Test]
+            \begin{bchart}[min=0, max=80, scale=4]
+                \bcbar[label=1, text=Quicksort mit NumPy Array]{72.231}
+                \smallskip
+                \bcbar[label=2, text=Quicksort mit Cython kompiliert]{52.808}
+                \smallskip
+                \bcbar[label=3, text=Quicksort mit Python Liste]{40.493}
+                \smallskip
+                \bcbar[label=4, text=\hspace{5cm}Quicksort mit Cython (alle Optimierungen)]{14.717}
+                \smallskip
+                \bcbar[label=5, text=\hspace{5cm}Quicksort mit Cython (statische Typisierung)]{14.403}
+                \smallskip
+                \bcbar[label=6, text=\hspace{5cm}Quicksort mit Numba und numba.typed list]{9.744}
+                \smallskip
+                \bcbar[label=7, text=\hspace{5cm}list.sort() mit Python Liste]{5.314}
+                \smallskip
+                \bcbar[label=8, text=\hspace{5cm}Quicksort mit Numba und NumPy Array]{1.805}
+                \smallskip
+                \bcbar[label=9, text=\hspace{5cm}C++ Quicksort]{1.051}
+                \smallskip
+                \bcbar[label=10, text=\hspace{5cm}C Quicksort aufgerufen mit CTypes]{1.035}
+                \smallskip
+                \bcbar[label=11, text=\hspace{5cm}C++ Standard Quicksort (std::sort)]{0.909}
+                \smallskip
+                \bcbar[label=12, text=\hspace{5cm}list.sort() mit NumPy Array]{0.894}
+                \smallskip
+                \bcxlabel{\bf{Ausführungszeit in Sekunden}}
+            \end{bchart}
+        \end{tikzfigure}
+    }
+\end{columns}
+
+
+
+% \begin{columns}
+%     \includesvg[width=0.7\textwidth]{./diagramm.svg}
+% \end{columns}
+
+\end{document}

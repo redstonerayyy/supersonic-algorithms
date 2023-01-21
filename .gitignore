@@ -25,6 +25,8 @@
 /**/*.bbl
 /**/*.blg
 /**/*.xdv
+/**/*.ps
+/**/*.dvi
 # intellij
 /**/cmake-build-debug
 /cmake-build-debug

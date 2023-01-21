@@ -1,0 +1,38 @@
+\documentclass[tikz]{standalone}
+
+% helvetica
+\usepackage[scaled]{helvet}
+\usepackage[T1]{fontenc}
+
+\usepackage{bchart}
+
+\begin{document}
+\begin{bchart}[min=0, max=80, scale=1]
+    \bcbar[label=1, text=Quicksort mit NumPy Array]{72.231}
+    \smallskip
+    \bcbar[label=2, text=Quicksort mit Cython kompiliert]{52.808}
+    \smallskip
+    \bcbar[label=3, text=Quicksort mit Python Liste]{40.493}
+    \smallskip
+    \bcbar[label=4, text=\hspace{5cm}Quicksort mit Cython (alle Optimierungen)]{14.717}
+    \smallskip
+    \bcbar[label=5, text=\hspace{5cm}Quicksort mit Cython (statische Typisierung)]{14.403}
+    \smallskip
+    \bcbar[label=6, text=\hspace{5cm}Quicksort mit Numba und numba.typed list]{9.744}
+    \smallskip
+    \bcbar[label=7, text=\hspace{5cm}list.sort() mit Python Liste]{5.314}
+    \smallskip
+    \bcbar[label=8, text=\hspace{5cm}Quicksort mit Numba und NumPy Array]{1.805}
+    \smallskip
+    \bcbar[label=9, text=\hspace{5cm}C++ Quicksort]{1.051}
+    \smallskip
+    \bcbar[label=10, text=\hspace{5cm}C Quicksort aufgerufen mit CTypes]{1.035}
+    \smallskip
+    \bcbar[label=11, text=\hspace{5cm}C++ Standard Quicksort (std::sort)]{0.909}
+    \smallskip
+    \bcbar[label=12, text=\hspace{5cm}list.sort() mit NumPy Array]{0.894}
+    \smallskip
+    \bcxlabel{\bf{Ausführungszeit in Sekunden}}
+\end{bchart}
+
+\end{document}
