@@ -1,16 +1,21 @@
 \documentclass[25pt, a0paper, portrait]{tikzposter}
 
+% package
 \usepackage{graphicx}
 \usepackage{fancyhdr}
 \usepackage{xcolor}
 \usepackage{bchart}
 \usepackage{tikz}
+\usepackage{multicol}
+
+% language
 \usepackage[german]{babel}
 \usetikzlibrary{babel}
 
 % font to helvec
-\usepackage[scaled]{helvet}
-\usepackage[T1]{fontenc}
+% \usepackage{unicode-math}
+\usepackage{fontspec}
+\setmainfont{Arial}
 
 % custom theming
 % https://github.com/debjyoti385/tikzposter
@@ -56,8 +61,8 @@
        \ifBlockHasTitle %
            \draw[draw=none]%, fill=blockbodybgcolor]
                (blockbody.south west) rectangle (blocktitle.north east);
-           \draw[color=blocktitlebgcolor, loosely dashed]
-               (blocktitle.south west) -- (blocktitle.south east);%
+        %    \draw[color=blocktitlebgcolor, loosely dashed]
+        %        (blocktitle.south west) -- (blocktitle.south east);%
        \else
              \draw[draw=none]%, fill=blockbodybgcolor]
                  (blockbody.south west) rectangle (blockbody.north east);
@@ -70,7 +75,7 @@
     titlewidthscale=1, bodywidthscale=1, titlecenter,
     titleoffsetx=0pt, titleoffsety=0pt, bodyoffsetx=0pt, bodyoffsety=0pt,
     bodyverticalshift=0pt, roundedcorners=20, linewidth=4pt,
-    titleinnersep=10pt, bodyinnersep=12pt
+    titleinnersep=12pt, bodyinnersep=12pt
 }{
     \begin{scope}[line width=\innerblocklinewidth, rounded
       corners=\innerblockroundedcorners, solid]
@@ -116,49 +121,41 @@
 % content
 % \block{Quicksort Implementationen in Python mit verschiedenen Optimierungen und Vergleich mit C++}{}
 
-
 \block{Quicksort Implementationen in Python mit verschiedenen Optimierungen und Vergleich mit C++}{
-    \fontfamily{helvet}
-    \begin{columns}
-        \column{0.4} \Large asdfasdf asdf as fasdf
-
-        \column{0.3}
-        \begin{tikzfigure}[Test]
-            \begin{bchart}[min=0, max=80, scale=4]
+    \begin{multicols}{2}
+        \Large asdfasdf asdf as fasdf asdf asdf asdf asd
+        % \hspace{20cm}
+        \columnbreak
+        \begin{tikzfigure}[]
+            \hspace{-5cm}\begin{bchart}[min=0, max=80, scale=5]
                 \bcbar[label=1, text=Quicksort mit NumPy Array]{72.231}
                 \smallskip
                 \bcbar[label=2, text=Quicksort mit Cython kompiliert]{52.808}
                 \smallskip
                 \bcbar[label=3, text=Quicksort mit Python Liste]{40.493}
                 \smallskip
-                \bcbar[label=4, text=\hspace{5cm}Quicksort mit Cython (alle Optimierungen)]{14.717}
+                \bcbar[label=4, text=\hspace{12cm}Quicksort mit Cython (alle Optimierungen)]{14.717}
                 \smallskip
-                \bcbar[label=5, text=\hspace{5cm}Quicksort mit Cython (statische Typisierung)]{14.403}
+                \bcbar[label=5, text=\hspace{12cm}Quicksort mit Cython (statische Typisierung)]{14.403}
                 \smallskip
-                \bcbar[label=6, text=\hspace{5cm}Quicksort mit Numba und numba.typed list]{9.744}
+                \bcbar[label=7, text=\hspace{12cm}Quicksort mit Numba und numba.typed list]{9.744}
                 \smallskip
-                \bcbar[label=7, text=\hspace{5cm}list.sort() mit Python Liste]{5.314}
+                \bcbar[label=7, text=\hspace{7cm}list.sort() mit Python Liste]{5.314}
                 \smallskip
-                \bcbar[label=8, text=\hspace{5cm}Quicksort mit Numba und NumPy Array]{1.805}
+                \bcbar[label=8, text=\hspace{7cm}Quicksort mit Numba und NumPy Array]{1.805}
                 \smallskip
-                \bcbar[label=9, text=\hspace{5cm}C++ Quicksort]{1.051}
+                \bcbar[label=9, text=\hspace{7cm}C++ Quicksort]{1.051}
                 \smallskip
-                \bcbar[label=10, text=\hspace{5cm}C Quicksort aufgerufen mit CTypes]{1.035}
+                \bcbar[label=12, text=\hspace{7cm}C Quicksort aufgerufen mit CTypes]{1.035}
                 \smallskip
-                \bcbar[label=11, text=\hspace{5cm}C++ Standard Quicksort (std::sort)]{0.909}
+                \bcbar[label=11, text=\hspace{7cm}C++ Standard Quicksort (std::sort)]{0.909}
                 \smallskip
-                \bcbar[label=12, text=\hspace{5cm}list.sort() mit NumPy Array]{0.894}
+                \bcbar[label=12, text=\hspace{7cm}list.sort() mit NumPy Array]{0.894}
                 \smallskip
                 \bcxlabel{\bf{Ausführungszeit in Sekunden}}
             \end{bchart}
         \end{tikzfigure}
-    \end{columns}
+    \end{multicols}
 }
-
-
-
-% \begin{columns}
-%     \includesvg[width=0.7\textwidth]{./diagramm.svg}
-% \end{columns}
 
 \end{document}
