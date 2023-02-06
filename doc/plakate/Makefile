@@ -1,5 +1,5 @@
-build: svgs pngs
-	latexmk -xelatex --shell-escape plakat1.tex
+build:
+	xelatex plakat1.tex
 
 svgs:
 	latexmk --shell-escape diagramm.tex
