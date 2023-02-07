@@ -7,15 +7,59 @@
 \usepackage{bchart}
 \usepackage{tikz}
 \usepackage{multicol}
+\usepackage{enumitem}
+\usepackage{setspace}
+
+% code highlighting
+\usepackage{listings}
+\usepackage{color}
+
+\definecolor{dkgreen}{rgb}{0,0.6,0}
+\definecolor{gray}{rgb}{0.5,0.5,0.5}
+\definecolor{mauve}{rgb}{0.58,0,0.82}
+
+\lstset{frame=tb,
+  language=Python,
+  aboveskip=3mm,
+  belowskip=3mm,
+  showstringspaces=false,
+  columns=flexible,
+  basicstyle={\normalsize\ttfamily},
+  numbers=none,
+  numberstyle=\tiny\color{gray},
+  keywordstyle=\color{blue},
+  commentstyle=\color{dkgreen},
+  stringstyle=\color{mauve},
+  breaklines=true,
+  breakatwhitespace=true,
+  tabsize=3
+}
+
+\usepackage{filecontents}
+\begin{filecontents*}{foo.py}
+import time
+
+class Timer:
+    timers = {}
+    @staticmethod
+    def start(name):
+        Timer.timers[name] = time.time_ns()
+    
+    @staticmethod
+    def stop(name):
+        diff = time.time_ns() - Timer.timers[name]
+        diffseconds = diff / (10 ** 9) 
+        print(name, ":", round(diffseconds, 5), "Seconds")
+\end{filecontents*}
 
 % language
 \usepackage[german]{babel}
 \usetikzlibrary{babel}
 
-% font to helvec
-% \usepackage{unicode-math}
-% \usepackage{fontspec}
-% \setmainfont{Arial}
+% font to arial
+\usepackage{unicode-math}
+\usepackage{fontspec}
+\setmainfont{Arial}
 
 % custom theming
 % https://github.com/debjyoti385/tikzposter
@@ -128,38 +172,143 @@
     {\huge \textbf{\@author} \par} \vspace*{1em} {\LARGE \@institute}
 }}
 
+% formatting
+\setlength\columnsep{3cm}
+\setstretch{1.25}
+
+% redefine title
+\makeatletter
+\newcommand\insertlogoi[2][]{\def\@insertlogoi{\includegraphics[#1]{#2}}}
+\newcommand\insertlogoii[2][]{\def\@insertlogoii{\includegraphics[#1]{#2}}}
+\newlength\LogoSep
+\setlength\LogoSep{0pt}
+
+\insertlogoi[width=5cm]{example-image-a}
+\insertlogoii[width=5cm]{example-image-b}
+
+\renewcommand\maketitle[1][]{  % #1 keys
+    \normalsize
+    \setkeys{title}{#1}
+    % Title dummy to get title height
+    \node[transparent,inner sep=\TP@titleinnersep, line width=\TP@titlelinewidth, anchor=north, minimum width=\TP@visibletextwidth-2\TP@titleinnersep]
+        (TP@title) at ($(0, 0.5\textheight-\TP@titletotopverticalspace)$) {\parbox{\TP@titlewidth-2\TP@titleinnersep}{\TP@maketitle}};
+    \draw let \p1 = ($(TP@title.north)-(TP@title.south)$) in node {
+        \setlength{\TP@titleheight}{\y1}
+        \setlength{\titleheight}{\y1}
+        \global\TP@titleheight=\TP@titleheight
+        \global\titleheight=\titleheight
+    };
+
+    % Compute title position
+    \setlength{\titleposleft}{-0.5\titlewidth}
+    \setlength{\titleposright}{\titleposleft+\titlewidth}
+    \setlength{\titlepostop}{0.5\textheight-\TP@titletotopverticalspace}
+    \setlength{\titleposbottom}{\titlepostop-\titleheight}
+
+    % Title style (background)
+    \TP@titlestyle
+
+    % Title node
+    \node[inner sep=\TP@titleinnersep, line width=\TP@titlelinewidth, anchor=north, minimum width=\TP@visibletextwidth-2\TP@titleinnersep]
+        at (0,0.5\textheight-\TP@titletotopverticalspace)
+        (title)
+        {\parbox{\TP@titlewidth-2\TP@titleinnersep}{\TP@maketitle}};
+
+    % \node[inner sep=0pt,anchor=west] 
+    %   at ([xshift=-\LogoSep]title.west)
+    %   {\@insertlogoi};
+
+    \node[inner sep=0pt,anchor=east, right=-8cm] 
+      at ([xshift=\LogoSep]title.east)
+      {\@insertlogoii};
+
+    % Settings for blocks
+    \normalsize
+    \setlength{\TP@blocktop}{\titleposbottom-\TP@titletoblockverticalspace}
+}
+\makeatother
+
+% set mono font
+% \setmonofont{Consolas}
+
 % main document
-% \subsection{Quicksort Implementationen in Python mit verschiedenen Optimierungen und Vergleich mit C++}
 \begin{document}
 
-% title
+% title with logo
+\insertlogoii[width=5cm]{apple.jpg}
+
 \title{Supersonic Algorithms}
 \author{Anton Rodenwald (18), Schillerschule Hannover}
 
 \maketitle
 
-% content
-% \block{Quicksort Implementationen in Python mit verschiedenen Optimierungen und Vergleich mit C++}{}
+\begin{columns}
+    \column{0.5}
+    \block{Ideenfindung und Forschungsfrage}{
+        \Large
+        \begin{itemize}
+            \item Sortieralgorithmen für Zahlen im Informatikunterricht kennengelernt
+            \item Ich fragte mich, wie man Zahlen am schnellsten sortieren kann
+            \item Sortieralgorithmen sind bereits bekannt, deswegen Fokus auf Implementation
+            \item Forschungsfrage: Wie lassen sich Programme durch geschickte Implementation
+                  in ihrer Ausführung beschleunigen?
+            \item Kein Vergleich von Sortieralgorithmen, fast immer Quicksort verwendet
+            \item Fokus auf die Programmiersprachen Python, C++ und C
+            \item In Interquellen wurde C++ um ein vielfaches schneller als Python beschrieben
+            \item Es war auch meine Vermutung, dass C++ deutlich schneller Zahlen sortiert
+        \end{itemize}
+    }
 
-\block{Quicksort Implementationen in Python mit verschiedenen Optimierungen und Vergleich mit C++}{
-    \begin{multicols}{2}
-		\Large
-        material
-        \columnbreak 
+    \column{0.5}
+    \block{Material, Vorgehen und Methode}{
         \Large
-        vorgehen
-    \end{multicols}
-	\begin{multicols}{2}
+        \begin{itemize}
+            \item Ich nutze meinen PC und Laptop zur Implementation
+            \item Ich verwende die Programme Visual Studio Code und Compiler oder Interpreter für meine Programmiersprachen
+            \item Ich implementierte anschließend die Quicksort auf verschiedene Arten und erhielt so viele
+                  Variationen zum testen
+            \item Die Tests führte ich auf meinem Desktop PC durch (CPU ist der Ryzen 7 2700, 16 GB Arbeitsspeicher), der immer gleich ausgelastet war,
+                  um Vergleichbarkeit zu gewährleisten
+            \item Die Zeit stoppte ich mit den Zeitfunktionen der Sprachen
+        \end{itemize}
+        \vspace{1cm}
+        \textbf{Beispiel der Zeitnahme in Python}
+        \begin{tikzfigure}
+            \lstinputlisting{foo.py}
+        \end{tikzfigure}
+    }
+\end{columns}
+\begin{columns}
+    \column{0.5}
+    \block{Ergebnissdiskussion}{
+
+    }
+
+    \column{0.5}
+    \block{Schwierigkeiten}{
         \Large
-		schwierigkeiten
-        \columnbreak 
-		\Large
-        ausblick und weitere forschung fg
-    \end{multicols}
-	\begin{multicols}{2}
-		\includegraphics[width=10cm]{github.png}
-        \columnbreak
-    \end{multicols}
-}
+        \begin{itemize}
+            \item Meine größte Schwierigkeit war, dass ich noch nicht viel Erfahrung
+                  mit der Optimierung und dem wissenschaftlichen Arbeiten hatte
+            \item Erstellung der Dokumentation mit \LaTeX teils frustrierend
+            \item Mit einigen Bibliotheken und Sprachen schwierigkeiten
+            \item Mir war das testen mit 10 Millionen Zahlen in Go nicht möglich,
+                  da dort Rekursion nicht so gut funktioniert
+        \end{itemize}
+    }
+    \block{Beantwortung der Forschungsfrage und Ausblick}{
+        \Large
+        \begin{itemize}
+            \item Die besten Möglichkeiten zur Optimierung in Python sind NumPy und Numba
+            \item Cython schlechter, CTypes komplex
+            \item In C++ bietet AVX2 interessante Möglichkeiten der Optimierung
+            \item Python kann ähnlich schnell wie C++ sein kann
+            \item Insgesamt profitiert Python vorallem von schnellen C
+                  Bibliotheken
+        \end{itemize}
+        \includegraphics{memepy.jpg}
+    }
+\end{columns}
+
 
 \end{document}
