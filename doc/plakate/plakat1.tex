@@ -206,12 +206,13 @@
         \setlength\multicolsep{0cm}
         \begin{itemize}
             \item Ausführungzungszeit meiner verschiedenen Implementationen des
-            Sortieralgorithmus Quicksort
+            Sortieralgorithmus Quicksort in Python und C++
             \item Programme sortierten 10 Millionen vorher generierte, zufällige Ganzzahlen
-            \item Erste Version (3) ca. 41 Sekunden
+            auf- bzw. absteigend 
+            \item Erste Version aus dem Informatikunterricht (3) ca. 41 Sekunden
             \item Optimierungsversuche überraschendeweise teils langsamer (1, 2)
             \item Optimierungen mit Cython (4, 5) bringen deutlichen Performance Boost
-            \item Versionen mit Numba sogar nochmals schneller (6, 8)
+            \item Versionen mit Numba sogar nochmals schneller (6, 8), JIT-Kompilierung sehr effektiv
             \item Eine Version (8) sogar schneller als list.sort(), der standardmäßigen Python Sortierfunktion
             \item Versionen mit C++, CTypes und NumPy Arrays nochmals eine Stufe darüber (9 - 12)
             \item Version mit CTypes benötigt allerdings noch zusätzlich Konvertierungszeit von ca. 2 Sekunden
@@ -286,19 +287,19 @@
     \column{0.5}
     \block{}{
     \Large
-    Auch interessierten mich Implementationen von Quicksort in anderen Sprachen, wo
-    ich aber aufgrund meines limitierten Wissens in diesen Sprachen keine Optimierungen
-    vornahm.
-    Es fällt direkt auf, dass Lua (1, 2) sowohl mit der Quicksort als auch mit der
-    standardmäßigen Sortierung im Vergleich sehr schlecht abschneidet.
-    Darauf folgt die standardmäßige Sortierung in Java (3).
-    Diese ist überraschenderweise langsamer als meine Quicksort Implementation in Java (5).
-    Zwischen diesen beiden liegt meine Quicksort in Javascript (4).
-    Darauf folgt dann Julia (6), wo meine eigene Quicksort fast genauso schnell war wie
-    die standardmäßige Sortierfunktion.
-    Einzig schneller sind nur die standardmäßige Sortierfunktion in Javascript (7) und meine
-    Quicksort Implementation in Go (8), wobei die Versionen in Go nur 7 Millionen Zahlen sortiert
-    aufgrund von Implementationsschwierigkeiten.
+    \begin{itemize}
+        \item Auch Implementierte ich Quicksort in anderen Programmiersprachen, 
+        um deren Geschwindigkeit zu erforschen
+        \item Nicht besonders optimietiert, da ich kaum Erfahrung in diesen Sprachen hatte
+        \item Lua relativ langsam (1, 2)
+        \item Bereitgestellte Sortierfunktion von Java (3) komischerweise langsamer als
+        eigene Quicksort in Java (5)
+        \item Javascript Quicksort im Mittelfeld (4)
+        \item Standardsortierung und eigene Implementation in Julia ähnlich schnell (6)
+        \item Javascript array.sort am schnellsten (7)
+        \item Go Quicksort Implementation zwar über Javascript, sortierte aber nur 7 Millionen
+        Zahlen
+    \end{itemize}
     }
 
 \end{columns}
