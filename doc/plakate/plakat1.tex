@@ -201,57 +201,57 @@
 \begin{columns}
     \column{0.5}
     \block{}{
-    \begin{tikzfigure}[]
-        \Large
-        \setlength\multicolsep{0cm}
-        \begin{itemize}
-            \item Ausführungzungszeit meiner verschiedenen Implementationen des
-            Sortieralgorithmus Quicksort in Python und C++
-            \item Programme sortierten 10 Millionen vorher generierte, zufällige Ganzzahlen
-            auf- bzw. absteigend 
-            \item Erste Version aus dem Informatikunterricht (3) ca. 41 Sekunden
-            \item Optimierungsversuche überraschendeweise teils langsamer (1, 2)
-            \item Optimierungen mit Cython (4, 5) bringen deutlichen Performance Boost
-            \item Versionen mit Numba sogar nochmals schneller (6, 8), JIT-Kompilierung sehr effektiv
-            \item Eine Version (8) sogar schneller als list.sort(), der standardmäßigen Python Sortierfunktion
-            \item Versionen mit C++, CTypes und NumPy Arrays nochmals eine Stufe darüber (9 - 12)
-            \item Version mit CTypes benötigt allerdings noch zusätzlich Konvertierungszeit von ca. 2 Sekunden
-            \item Python ähnlich schnell wie C++, was ich so nicht erwartet hatte
-        \end{itemize}
-    \end{tikzfigure}
+        \begin{tikzfigure}[]
+            \Large
+            \setlength\multicolsep{0cm}
+            \begin{itemize}
+                \item Ausführungzungszeit meiner verschiedenen Implementationen des
+                      Sortieralgorithmus Quicksort in Python und C++
+                \item Programme sortierten 10 Millionen vorher generierte, zufällige Ganzzahlen
+                      auf- bzw. absteigend
+                \item Erste Version aus dem Informatikunterricht (3) ca. 41 Sekunden
+                \item Optimierungsversuche überraschendeweise teils langsamer (1, 2)
+                \item Optimierungen mit Cython (4, 5) bringen deutlichen Performance Boost
+                \item Versionen mit Numba sogar nochmals schneller (6, 8), JIT-Kompilierung sehr effektiv
+                \item Eine Version (8) sogar schneller als list.sort(), der standardmäßigen Python Sortierfunktion
+                \item Versionen mit C++, CTypes und NumPy Arrays nochmals eine Stufe darüber (9 - 12)
+                \item Version mit CTypes benötigt allerdings noch zusätzlich Konvertierungszeit von ca. 2 Sekunden
+                \item Python ähnlich schnell wie C++, was ich so nicht erwartet hatte
+            \end{itemize}
+        \end{tikzfigure}
     }
 
     \column{0.5}
     \block{}{
-    \begin{tikzfigure}[]
-        \hspace{-5cm}\begin{bchart}[min=0, max=80, scale=3.7]
-            \bcbar[label=1, text=Quicksort mit NumPy Array]{72.231}
-            \smallskip
-            \bcbar[label=2, text=Quicksort mit Cython kompiliert]{52.808}
-            \smallskip
-            \bcbar[label=3, text=Quicksort mit Python Liste]{40.493}
-            \smallskip
-            \bcbar[label=4, text=\hspace{12cm}Quicksort mit Cython (alle Optimierungen)]{14.717}
-            \smallskip
-            \bcbar[label=5, text=\hspace{12cm}Quicksort mit Cython (statische Typisierung)]{14.403}
-            \smallskip
-            \bcbar[label=6, text=\hspace{12cm}Quicksort mit Numba und numba.typed list]{9.744}
-            \smallskip
-            \bcbar[label=7, text=\hspace{7cm}list.sort() mit Python Liste]{5.314}
-            \smallskip
-            \bcbar[label=8, text=\hspace{7cm}Quicksort mit Numba und NumPy Array]{1.805}
-            \smallskip
-            \bcbar[label=9, text=\hspace{7cm}C++ Quicksort]{1.051}
-            \smallskip
-            \bcbar[label=10, text=\hspace{7cm}C Quicksort aufgerufen mit CTypes]{1.035}
-            \smallskip
-            \bcbar[label=11, text=\hspace{7cm}C++ Standard Quicksort (std::sort)]{0.909}
-            \smallskip
-            \bcbar[label=12, text=\hspace{7cm}list.sort() mit NumPy Array]{0.894}
-            \smallskip
-            \bcxlabel{\bf{Ausführungszeit in Sekunden}}
-        \end{bchart}
-    \end{tikzfigure}
+        \begin{tikzfigure}[]
+            \hspace{-5cm}\begin{bchart}[min=0, max=80, scale=3.7]
+                \bcbar[label=1, text=Quicksort mit NumPy Array]{72.231}
+                \smallskip
+                \bcbar[label=2, text=Quicksort mit Cython kompiliert]{52.808}
+                \smallskip
+                \bcbar[label=3, text=Quicksort mit Python Liste]{40.493}
+                \smallskip
+                \bcbar[label=4, text=\hspace{12cm}Quicksort mit Cython (alle Optimierungen)]{14.717}
+                \smallskip
+                \bcbar[label=5, text=\hspace{12cm}Quicksort mit Cython (statische Typisierung)]{14.403}
+                \smallskip
+                \bcbar[label=6, text=\hspace{12cm}Quicksort mit Numba und numba.typed list]{9.744}
+                \smallskip
+                \bcbar[label=7, text=\hspace{7cm}list.sort() mit Python Liste]{5.314}
+                \smallskip
+                \bcbar[label=8, text=\hspace{7cm}Quicksort mit Numba und NumPy Array]{1.805}
+                \smallskip
+                \bcbar[label=9, text=\hspace{7cm}C++ Quicksort]{1.051}
+                \smallskip
+                \bcbar[label=10, text=\hspace{7cm}C Quicksort aufgerufen mit CTypes]{1.035}
+                \smallskip
+                \bcbar[label=11, text=\hspace{7cm}C++ Standard Quicksort (std::sort)]{0.909}
+                \smallskip
+                \bcbar[label=12, text=\hspace{7cm}list.sort() mit NumPy Array]{0.894}
+                \smallskip
+                \bcxlabel{\bf{Ausführungszeit in Sekunden}}
+            \end{bchart}
+        \end{tikzfigure}
     }
 \end{columns}
 
@@ -260,46 +260,46 @@
 \begin{columns}
     \column{0.5}
     \block{}{
-    \Large
-    \begin{tikzfigure}[]
-        \begin{bchart}[min=0, max=15, scale=3.5]
-            \bcbar[label=1, text=Quicksort Lua]{11.528}
-            \smallskip
-            \bcbar[label=2, text=Lua table.sort (Standardsortierung)]{11.035}
-            \smallskip
-            \bcbar[label=3, text=\hspace{14cm}Java Collection.sort (Standardsortierung)]{5.016}
-            \smallskip
-            \bcbar[label=4, text=\hspace{14cm}Quicksort Javascript]{3.167}
-            \smallskip
-            \bcbar[label=5, text=\hspace{14cm}Quicksort Java]{2.828}
-            \smallskip
-            \bcbar[label=6, text=\hspace{7cm}Quicksort Julia und Julia sort (Standardsortierung)]{1.374}
-            \smallskip
-            \bcbar[label=7, text=\hspace{7cm}Javascript array.sort (Standardsortierung)]{1.159}
-            \smallskip
-            \bcbar[label=8, text=\hspace{7cm}Quicksort Go (7 Millionen Zahlen)]{0.919}
-            \smallskip
-            \bcxlabel{\bf{Ausführungszeit in Sekunden}}
-        \end{bchart}
-    \end{tikzfigure}
+        \Large
+        \begin{tikzfigure}[]
+            \begin{bchart}[min=0, max=15, scale=3.5]
+                \bcbar[label=1, text=Quicksort Lua]{11.528}
+                \smallskip
+                \bcbar[label=2, text=Lua table.sort (Standardsortierung)]{11.035}
+                \smallskip
+                \bcbar[label=3, text=\hspace{14cm}Java Collection.sort (Standardsortierung)]{5.016}
+                \smallskip
+                \bcbar[label=4, text=\hspace{14cm}Quicksort Javascript]{3.167}
+                \smallskip
+                \bcbar[label=5, text=\hspace{14cm}Quicksort Java]{2.828}
+                \smallskip
+                \bcbar[label=6, text=\hspace{7cm}Quicksort Julia und Julia sort (Standardsortierung)]{1.374}
+                \smallskip
+                \bcbar[label=7, text=\hspace{7cm}Javascript array.sort (Standardsortierung)]{1.159}
+                \smallskip
+                \bcbar[label=8, text=\hspace{7cm}Quicksort Go (7 Millionen Zahlen)]{0.919}
+                \smallskip
+                \bcxlabel{\bf{Ausführungszeit in Sekunden}}
+            \end{bchart}
+        \end{tikzfigure}
     }
 
     \column{0.5}
     \block{}{
-    \Large
-    \begin{itemize}
-        \item Auch Implementierte ich Quicksort in anderen Programmiersprachen, 
-        um deren Geschwindigkeit zu erforschen
-        \item Nicht besonders optimietiert, da ich kaum Erfahrung in diesen Sprachen hatte
-        \item Lua relativ langsam (1, 2)
-        \item Bereitgestellte Sortierfunktion von Java (3) komischerweise langsamer als
-        eigene Quicksort in Java (5)
-        \item Javascript Quicksort im Mittelfeld (4)
-        \item Standardsortierung und eigene Implementation in Julia ähnlich schnell (6)
-        \item Javascript array.sort am schnellsten (7)
-        \item Go Quicksort Implementation zwar über Javascript, sortierte aber nur 7 Millionen
-        Zahlen
-    \end{itemize}
+        \Large
+        \begin{itemize}
+            \item Auch Implementierte ich Quicksort in anderen Programmiersprachen,
+                  um deren Geschwindigkeit zu erforschen
+            \item Nicht besonders optimietiert, da ich kaum Erfahrung in diesen Sprachen hatte
+            \item Lua relativ langsam (1, 2)
+            \item Bereitgestellte Sortierfunktion von Java (3) komischerweise langsamer als
+                  eigene Quicksort in Java (5)
+            \item Javascript Quicksort im Mittelfeld (4)
+            \item Standardsortierung und eigene Implementation in Julia ähnlich schnell (6)
+            \item Javascript array.sort am schnellsten (7)
+            \item Go Quicksort Implementation zwar über Javascript, sortierte aber nur 7 Millionen
+                  Zahlen aufgrund von Implementationsproblemen
+        \end{itemize}
     }
 
 \end{columns}
@@ -309,29 +309,36 @@
 \begin{columns}
     \column{0.5}
     \block{}{
-    \Large
-    Um eine niedrig möglichste Zeit zu erreichen schaute ich mir noch die Radixsort als anderen Sortieralgorithmus
-    an, die allerdings nicht direkt mit der Quicksort vergleichbar ist.
-    Implementationen dieser brauchten zuerst 2.269 Sekunden (1),
-    doch ich konnte die Performance noch steigern (2, 3) und die Quicksort überholen.
-    Dies zeigte mir, dass korrekte Implementation und Wahl des Algorithmuvon eine wichtige Rolle spielen.
-    Auf die resultierende Frage, wieso die Radixsort nicht häufiger genutzt wird, fand ich bisher
-    noch keine Antwort.
+        \Large
+        \begin{itemize}
+            \item Versuch der möglichst schnellen Sortierung einem anderem Algorithmus (Radixsort)
+            \item Nicht direkt mit der Quicksort, da anderer Algorithmus
+            \item Erste Version noch relativ langsam (1), da ich Implementationsfehler machte
+            \item Verbesserte Implementationen (2, 3) deutlich schneller
+            \item AVX2 (spezielle Befehle für die CPU) als Optimierungsmöglichkeit genutzt
+        \end{itemize}
+        % Um eine niedrig möglichste Zeit zu erreichen schaute ich mir noch die Radixsort als anderen Sortieralgorithmus
+        % an, die allerdings nicht direkt mit der Quicksort vergleichbar ist.
+        % Implementationen dieser brauchten zuerst 2.269 Sekunden (1),
+        % doch ich konnte die Performance noch steigern (2, 3) und die Quicksort überholen.
+        % Dies zeigte mir, dass korrekte Implementation und Wahl des Algorithmuvon eine wichtige Rolle spielen.
+        % Auf die resultierende Frage, wieso die Radixsort nicht häufiger genutzt wird, fand ich bisher
+        % noch keine Antwort.
     }
 
     \column{0.5}
     \block{}{
-    \begin{tikzfigure}[]
-        \begin{bchart}[min=0, max=2.5, scale=3.7]
-            \bcbar[label=1, text=Radixsort mit Basis 10 (Countingsort)]{2.269}
-            \smallskip
-            \bcbar[label=2, text=\hspace{7cm}Radixsort mit Basis 256 (Bytesort)]{0.244}
-            \smallskip
-            \bcbar[label=3, text=\hspace{7cm}Radixsort mit Basis 256 (Bytesort) und AVX2]{0.240}
-            \smallskip
-            \bcxlabel{\bf{Ausführungszeit in Sekunden}}
-        \end{bchart}
-    \end{tikzfigure}
+        \begin{tikzfigure}[]
+            \begin{bchart}[min=0, max=2.5, scale=3.7]
+                \bcbar[label=1, text=Radixsort mit Basis 10 (Countingsort)]{2.269}
+                \smallskip
+                \bcbar[label=2, text=\hspace{7cm}Radixsort mit Basis 256 (Bytesort)]{0.244}
+                \smallskip
+                \bcbar[label=3, text=\hspace{7cm}Radixsort mit Basis 256 (Bytesort) und AVX2]{0.240}
+                \smallskip
+                \bcxlabel{\bf{Ausführungszeit in Sekunden}}
+            \end{bchart}
+        \end{tikzfigure}
     }
 
 \end{columns}
