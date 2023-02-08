@@ -9,7 +9,7 @@
 \usepackage{multicol}
 \usepackage{enumitem}
 \usepackage{setspace}
-
+\usepackage{dirtytalk}
 % code highlighting
 \usepackage{listings}
 \usepackage{color}
@@ -254,8 +254,8 @@ class Timer:
                   in ihrer Ausführung beschleunigen?
             \item Kein Vergleich von Sortieralgorithmen, fast immer Quicksort verwendet
             \item Fokus auf die Programmiersprachen Python, C++ und C
-            \item In Interquellen wurde C++ um ein vielfaches schneller als Python beschrieben
-            \item Es war auch meine Vermutung, dass C++ deutlich schneller Zahlen sortiert
+            \item In Internetquellen wurde C++ um ein vielfaches schneller als Python beschrieben
+                  was auch meiner Vermutung entsprach
         \end{itemize}
     }
 
@@ -271,31 +271,33 @@ class Timer:
         \end{itemize}
     }
 
-    \block{Ergebnissdiskussion}{
-        \Large    
+    \block{Beantwortung der Forschungsfrage und Ausblick}{
+        \Large
         \begin{itemize}
-            \item Ein Ansatz zur Erklärung der Ergebnisse ist die Unterscheidung von
-            interpretierten und kompilierten Programmiersprachen
-            \item Bei interpretierten Sprachen führt ein spezielles Programm, der Interpreter,
-            ein in Textform vorliegendes Programm aus
-            \item Bei kompilierten Sprachen muss vor dem Ausführen der Quellcode von einem
-            Compiler umgewandelt werden in ein ausführbares Programm
-            \item Dieser Prozess kostet Zeit, aber erlaubt viele verschiedene Optimierungen
-            \item Beim Interpreter ist dies bei Beginn der Ausführung alles noch nicht geschehen
-            \item Python ist deswegen langsamer, weil während der Ausführung der Programmcode
-            der Quelldatei noch zeitintensiv analysiert werden muss, bevor dieser ausgeführt werden kann
-            \item Bei kompilierten Sprachen wie C++ ist dies bereits geschehen und der Programmcode wurde vom Compiler optimiert,
-            weswegen diese Programme dann schneller sind
-            \item Python ist nur dann schnell, wenn der Interpreter vorher kompilierte Programmteile
-            nutzen kann, also wenn kaum Python Code interpretiert werden muss
+            \item Die besten Möglichkeiten zur Optimierung in Python sind NumPy und Numba;
+                  Cython schlechter, CTypes komplex
+            \item In C++ bietet AVX2 interessante Möglichkeiten der Optimierung
+            \item Python kann ähnlich schnell wie C++ sein kann
+            \item Insgesamt profitiert Python vorallem von schnellen C
+                  Bibliotheken
+            \item Python ist nur dann schnell, wenn kein Python Code, sondern
+                  C Funktionen ausgeführt werden
+            \item Weiter erforschen könnte man den Aufbau von Interpretern und Compilern
+                  (z. B. am Beispiel von Python, C++)
+            \item Auch denkbar ist der vertiefte Vergleich von Quicksort und Radixsort
+                  zur Sortierung verschiedener Daten
         \end{itemize}
+        \vspace{1cm}
+        \begin{center}
+            \includegraphics[scale=1.1]{memepy.jpg}
+        \end{center}
     }
 
     \column{0.5}
     \block{Material, Vorgehen und Methode}{
         \Large
         \begin{itemize}
-            \item Ich nutze meinen PC und Laptop zur Implementation
+            \item Ich nutze meinen Linux PC und Linux Laptop zur Implementation
             \item Ich verwende die IDE Visual Studio Code und die Compiler und Interpreter für meine Programmiersprachen
             \item Ich implementierte anschließend die Quicksort auf verschiedene Arten und erhielt so viele
                   Variationen zum testen
@@ -303,34 +305,36 @@ class Timer:
                   um Vergleichbarkeit zu gewährleisten
             \item Die Zeit stoppte ich mit den Zeitfunktionen der Sprachen
         \end{itemize}
-        \vspace{1cm}
-        \textbf{Quellcode meiner Timer Implementation in Python}
-        \begin{tikzfigure}
-            \lstinputlisting{foo.py}
-        \end{tikzfigure}
-        \vspace{1.7cm}
+        \vspace{5.5cm}
     }
-    
-    \block{Beantwortung der Forschungsfrage und Ausblick}{
+
+    \block{Ergebnissdiskussion}{
         \Large
         \begin{itemize}
-            \item Die besten Möglichkeiten zur Optimierung in Python sind NumPy und Numba;
-            Cython schlechter, CTypes komplex
-            \item In C++ bietet AVX2 interessante Möglichkeiten der Optimierung
-            \item Python kann ähnlich schnell wie C++ sein kann
-            \item Insgesamt profitiert Python vorallem von schnellen C
-                  Bibliotheken
-            \item Python ist nur dann schnell, wenn kein Python Code, sondern
-            C Funktionen ausgeführt werden
-            \item Weiter erforschen könnte man den Aufbau von Interpretern und Compilern
-            (z. B. am Beispiel von Python, C++)
-            \item Auch denkbar ist der vertiefte Vergleich von Quicksort und Radixsort
-            zur Sortierung verschiedener Daten
+            \item Ein Ansatz zur Erklärung der Ergebnisse ist die Unterscheidung von
+                  interpretierten und kompilierten Programmiersprachen
+            \item Bei interpretierten Sprachen führt ein spezielles Programm, der Interpreter,
+                  ein in Textform vorliegendes Programm aus
+            \item Bei kompilierten Sprachen muss vor dem Ausführen der Quellcode von einem
+                  Compiler umgewandelt werden in ein ausführbares Programm
+            \item Dieser Prozess kostet Zeit, aber erlaubt viele verschiedene Optimierungen
+            \item Beim Interpreter ist dies bei Beginn der Ausführung alles noch nicht geschehen
+            \item Python ist deswegen langsamer, weil während der Ausführung der Programmcode
+                  der Quelldatei noch zeitintensiv analysiert werden muss, bevor dieser ausgeführt werden kann
+            \item Bei kompilierten Sprachen wie C++ ist dies bereits geschehen und der Programmcode wurde vom Compiler optimiert,
+                  weswegen diese Programme dann schneller sind
+            \item Python ist nur dann schnell, wenn der Interpreter vorher kompilierte Programmteile
+                  nutzen kann, also wenn kaum Python Code interpretiert werden muss
+            \item Solche vorher kompilierten Programmteile stellt z. B. NumPy bereit
+            \item Die Bibliothek Numba macht Python deshalb schneller, weil sie die Kompilierung von Python
+                  ermöglicht
+            \item Zu Programmbeginn kompiliert Numba einige Teile des Python Programms, was etwas
+                  Zeit kostet
+            \item Werden diese Teile besonders häufig benutzt, kann sich das aber wieder rechnen und
+                  das Programm schneller machen
+            \item Diesen Vorgang nennt man JIT-Kompilierung, also \say{Just-in-Time} Kompilierung, weil er
+                  eben beim Ausführen geschieht
         \end{itemize}
-        \vspace{1cm}
-        \begin{center}
-            \includegraphics[scale=1.1]{memepy.jpg}
-        \end{center}
     }
 \end{columns}
 
