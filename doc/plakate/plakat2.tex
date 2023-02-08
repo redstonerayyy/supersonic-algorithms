@@ -249,8 +249,8 @@ class Timer:
         \begin{itemize}
             \item Sortieralgorithmen für Zahlen im Informatikunterricht kennengelernt
             \item Ich fragte mich, wie man Zahlen am schnellsten sortieren kann
-            \item Sortieralgorithmen sind bereits bekannt, deswegen Fokus auf Implementation
-            \item Forschungsfrage: Wie lassen sich Programme durch geschickte Implementation
+            \item Sortieralgorithmen sind bereits bekannt und erforscht, deswegen Fokus auf Implementation bekannter Algorithmen
+            \item Forschungsfrage: Wie lassen sich Programme (z. B. Sortieralgorithmen) durch geschickte Implementation
                   in ihrer Ausführung beschleunigen?
             \item Kein Vergleich von Sortieralgorithmen, fast immer Quicksort verwendet
             \item Fokus auf die Programmiersprachen Python, C++ und C
@@ -264,8 +264,8 @@ class Timer:
         \begin{itemize}
             \item Meine größte Schwierigkeit war, dass ich noch nicht viel Erfahrung
                   mit der Optimierung und dem wissenschaftlichen Arbeiten hatte
-            \item Erstellung der Dokumentation mit \LaTeX teils frustrierend
-            \item Mit einigen Bibliotheken und Sprachen schwierigkeiten
+            \item Erstellung der Dokumentation mit \LaTeX \hspace{6pt} teils frustrierend
+            \item Mit einigen Bibliotheken und Sprachen Schwierigkeiten
             \item Mir war das testen mit 10 Millionen Zahlen in Go nicht möglich,
                   da dort Rekursion nicht so gut funktioniert
         \end{itemize}
@@ -282,9 +282,9 @@ class Timer:
             Compiler umgewandelt werden in ein ausführbares Programm
             \item Dieser Prozess kostet Zeit, aber erlaubt viele verschiedene Optimierungen
             \item Beim Interpreter ist dies bei Beginn der Ausführung alles noch nicht geschehen
-            \item Python ist deswegen meist langsamer, weil während der Ausführung der Programmcode
-            der Quelldatei noch zeitintensiv analysiert werden muss
-            \item Bei kompilierten Sprachen wie C++ ist dies bereits geschehen und es wurde optimiert,
+            \item Python ist deswegen langsamer, weil während der Ausführung der Programmcode
+            der Quelldatei noch zeitintensiv analysiert werden muss, bevor dieser ausgeführt werden kann
+            \item Bei kompilierten Sprachen wie C++ ist dies bereits geschehen und der Programmcode wurde vom Compiler optimiert,
             weswegen diese Programme dann schneller sind
             \item Python ist nur dann schnell, wenn der Interpreter vorher kompilierte Programmteile
             nutzen kann, also wenn kaum Python Code interpretiert werden muss
@@ -296,7 +296,7 @@ class Timer:
         \Large
         \begin{itemize}
             \item Ich nutze meinen PC und Laptop zur Implementation
-            \item Ich verwende die IDE Visual Studio Code und Compiler oder Interpreter für meine Programmiersprachen
+            \item Ich verwende die IDE Visual Studio Code und die Compiler und Interpreter für meine Programmiersprachen
             \item Ich implementierte anschließend die Quicksort auf verschiedene Arten und erhielt so viele
                   Variationen zum testen
             \item Die Tests führte ich auf meinem Desktop PC durch (CPU ist der Ryzen 7 2700, 16 GB Arbeitsspeicher), der immer gleich ausgelastet war,
@@ -304,7 +304,7 @@ class Timer:
             \item Die Zeit stoppte ich mit den Zeitfunktionen der Sprachen
         \end{itemize}
         \vspace{1cm}
-        \textbf{Beispiel der Zeitnahme in Python}
+        \textbf{Quellcode meiner Timer Implementation in Python}
         \begin{tikzfigure}
             \lstinputlisting{foo.py}
         \end{tikzfigure}

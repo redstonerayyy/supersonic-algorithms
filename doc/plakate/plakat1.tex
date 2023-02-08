@@ -9,6 +9,7 @@
 \usepackage{multicol}
 \usepackage{enumitem}
 \usepackage{setspace}
+\usepackage{dirtytalk}
 
 % language
 \usepackage[german]{babel}
@@ -205,14 +206,14 @@
             \Large
             \setlength\multicolsep{0cm}
             \begin{itemize}
-                \item Ausführungzungszeit meiner verschiedenen Implementationen des
+                \item Ausführungszeit meiner verschiedenen Implementationen des
                       Sortieralgorithmus Quicksort in Python und C++
-                \item Programme sortierten 10 Millionen vorher generierte, zufällige Ganzzahlen
-                      auf- bzw. absteigend
+                \item Programme sortierten 10 Millionen vorher generierte, zufällige, unsortierte Ganzzahlen
+                      in auf- bzw. absteigende Reihenfolge
                 \item Erste Version aus dem Informatikunterricht (3) ca. 41 Sekunden
                 \item Optimierungsversuche überraschendeweise teils langsamer (1, 2)
                 \item Optimierungen mit Cython (4, 5) bringen deutlichen Performance Boost
-                \item Versionen mit Numba sogar nochmals schneller (6, 8), JIT-Kompilierung sehr effektiv
+                \item Versionen mit Numba sogar nochmals schneller (6, 8)
                 \item Eine Version (8) sogar schneller als list.sort(), der standardmäßigen Python Sortierfunktion
                 \item Versionen mit C++, CTypes und NumPy Arrays nochmals eine Stufe darüber (9 - 12)
                 \item Version mit CTypes benötigt allerdings noch zusätzlich Konvertierungszeit von ca. 2 Sekunden
@@ -290,10 +291,10 @@
         \begin{itemize}
             \item Auch Implementierte ich Quicksort in anderen Programmiersprachen,
                   um deren Geschwindigkeit zu erforschen
-            \item Nicht besonders optimietiert, da ich kaum Erfahrung in diesen Sprachen hatte
+            \item Nicht besonders optimiert, da ich kaum Erfahrung in diesen Sprachen habe
             \item Lua relativ langsam (1, 2)
             \item Bereitgestellte Sortierfunktion von Java (3) komischerweise langsamer als
-                  eigene Quicksort in Java (5)
+                  eigene Quicksort Implementation in Java (5)
             \item Javascript Quicksort im Mittelfeld (4)
             \item Standardsortierung und eigene Implementation in Julia ähnlich schnell (6)
             \item Javascript array.sort am schnellsten (7)
@@ -311,19 +312,12 @@
     \block{}{
         \Large
         \begin{itemize}
-            \item Versuch der möglichst schnellen Sortierung einem anderem Algorithmus (Radixsort)
-            \item Nicht direkt mit der Quicksort, da anderer Algorithmus
+            \item Versuch der möglichst schnellen Sortierung mit einem anderem Algorithmus (Radixsort)
+            \item Nicht direkt mit der Quicksort vergleichbar, da anderer Algorithmus
             \item Erste Version noch relativ langsam (1), da ich Implementationsfehler machte
             \item Verbesserte Implementationen (2, 3) deutlich schneller
-            \item AVX2 (spezielle Befehle für die CPU) als Optimierungsmöglichkeit genutzt
+            \item AVX2 (\say{Advanced Vector Instructions} , spezielle Befehle für die CPU) als Optimierungsmöglichkeit genutzt
         \end{itemize}
-        % Um eine niedrig möglichste Zeit zu erreichen schaute ich mir noch die Radixsort als anderen Sortieralgorithmus
-        % an, die allerdings nicht direkt mit der Quicksort vergleichbar ist.
-        % Implementationen dieser brauchten zuerst 2.269 Sekunden (1),
-        % doch ich konnte die Performance noch steigern (2, 3) und die Quicksort überholen.
-        % Dies zeigte mir, dass korrekte Implementation und Wahl des Algorithmuvon eine wichtige Rolle spielen.
-        % Auf die resultierende Frage, wieso die Radixsort nicht häufiger genutzt wird, fand ich bisher
-        % noch keine Antwort.
     }
 
     \column{0.5}
