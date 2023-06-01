@@ -26,7 +26,7 @@ int main(){
     Timer::start("radixsort faster");
     RadixSortFast(numbers3);
     Timer::stop("radixsort faster");
-    std::cout << numbers3.at(0) << " " << numbers3.at(1) << " " << numbers3.at(numbers3.size() - 2) << " " << numbers3.at(numbers3.size() - 1) << "\n";
+    // std::cout << numbers3.at(0) << " " << numbers3.at(1) << " " << numbers3.at(numbers3.size() - 2) << " " << numbers3.at(numbers3.size() - 1) << "\n";
     // 4.
     std::vector<unsigned int> numbers4 = gen(tenmillion, maximum);
     Timer::start("custom quicksort");

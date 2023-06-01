@@ -123,9 +123,9 @@ int main(){
     // unsigned int maximum = 0x0000FFFF; // 65535
     // unsigned int maximum = 0x000000FF; // 255
     std::vector<std::uint32_t> liste = gen(tenmillion, maximum);
-    Timer::start("terdimann");
+    Timer::start("terdimann extension");
     RadixSort(liste);
-    Timer::stop("terdimann", true);
+    Timer::stop("terdimann extension", true);
 
     std::vector<std::uint32_t> liste2 = gen(tenmillion, maximum);
 

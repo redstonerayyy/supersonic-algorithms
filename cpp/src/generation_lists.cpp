@@ -5,7 +5,7 @@
 
 // generate
 std::vector<unsigned int> gen(unsigned long length, unsigned int max){
-    Timer::start("gen");
+    // Timer::start("gen");
     std::random_device dev; // get random seed
     std::mt19937 rng(dev());
     // std::mt19937 rng(100); // set seed
@@ -17,6 +17,6 @@ std::vector<unsigned int> gen(unsigned long length, unsigned int max){
         numbers.emplace_back(dist(rng));
     }
 
-    Timer::stop("gen");
+    // Timer::stop("gen");
     return numbers;
 }
